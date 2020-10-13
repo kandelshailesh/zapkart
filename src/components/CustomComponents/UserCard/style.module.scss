@@ -1,0 +1,14 @@
+@import "assets/styles/mixins.scss";
+
+.header {
+  background-size: cover;
+}
+
+.inlineElements {
+  dt,
+  dt {
+    display: inline-block !important;
+    padding: 0 5px !important;
+    margin: 0 !important;
+  }
+}

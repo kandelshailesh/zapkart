@@ -1,0 +1,21 @@
+{
+    "user":{
+        "last_action":"2020-03-10T12:14:45.089Z",
+        "current_ac_status":"active",
+        "signup_date":"2020-03-10T12:14:45.089Z",
+        "newsletter_signup_status":"no",
+        "user_group":"registered",
+        "profile_language":"English (US)",
+        "billing":{
+            "address1":"CHERUVATTOOR P.O",
+            "address2":null,
+            "state":"Kerala",
+            "country":"India",
+            "city":"CHERUVATTOOR",
+            "pincode":"765656"
+        },
+        "shipping":{
+            "address":"KRISHNA K , CHERUVATTOOR P.O, CHERUVATTOOR, Kerala, 686661, India"
+        }
+    }
+}

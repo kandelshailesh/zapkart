@@ -1,0 +1,94 @@
+{
+    "data": [
+        {
+            "key": "1",
+            "id": "100",
+            "name": "Ayurveda",
+            "parent_category": 0,
+            "id_path": "0/100",
+            "status": "active",
+            "description": "Lorem ipsum tarus"
+        },
+        {
+            "key": "2",
+            "id": "101",
+            "name": "Diabetes",
+            "parent_category": 0,
+            "id_path": "0/101",
+            "status": "disabled",
+            "description": "Lorem ipsum tarus"
+        },
+        {
+            "key": "3",
+            "id": "102",
+            "name": "Vitamins",
+            "parent_category": 0,
+            "id_path": "0/102",
+            "status": "active",
+            "description": "Lorem ipsum tarus"
+        },
+        {
+            "key": "4",
+            "id": "103",
+            "name": "Meditation",
+            "parent_category": 0,
+            "id_path": "0/103",
+            "status": "active",
+            "description": "Lorem ipsum tarus"
+        },
+        {
+            "key": "5",
+            "id": "104",
+            "name": "Personal care",
+            "parent_category": 0,
+            "id_path": "0/104",
+            "status": "disabled",
+            "description": "Lorem ipsum tarus"
+        },
+        {
+            "key": "6",
+            "id": "105",
+            "name": "Superfoods",
+            "parent_category": 0,
+            "id_path": "0/105",
+            "status": "active",
+            "description": "Lorem ipsum tarus"
+        },
+        {
+            "key": "7",
+            "id": "106",
+            "name": "Skin care",
+            "parent_category": 0,
+            "id_path": "0/106",
+            "status": "active",
+            "description": "Lorem ipsum tarus"
+        },
+        {
+            "key": "8",
+            "id": "107",
+            "name": "Diabetic diet",
+            "parent_category": 0,
+            "id_path": "0/107",
+            "status": "active",
+            "description": "Lorem ipsum tarus"
+        },
+        {
+            "key": "9",
+            "id": "108",
+            "name": "Homeopathy",
+            "parent_category": 0,
+            "id_path": "0/108",
+            "status": "active",
+            "description": "Lorem ipsum tarus"
+        },
+        {
+            "key": "10",
+            "id": "109",
+            "name": "Respiratory health",
+            "parent_category": 0,
+            "id_path": "0/109",
+            "status": "active",
+            "description": "Lorem ipsum tarus"
+        }
+    ]
+}

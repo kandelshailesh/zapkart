@@ -1,0 +1,720 @@
+{
+    "data": [
+        {
+            "return_id": 1,
+            "order_id": 2433,
+            "user": {
+                "name": "Damon",
+                "profile_img": "resources/images/avatars/temp.jpg",
+                "email": "abx@gmail.com"
+            },
+            "products": [
+                {
+                    "product_id": 1232,
+                    "name": "AccuCheck Glucose Monitor",
+                    "img": "resources/images/ecommerce/001.jpg",
+                    "price": 130,
+                    "quantity": 4,
+                    "reason": "Other"
+                },
+                {
+                    "product_id": 1234,
+                    "name": "Vitamin tablet",
+                    "img": "resources/images/ecommerce/002.jpg",
+                    "price": 76,
+                    "quantity": 3,
+                    "reason": "Other"
+                }
+            ],
+            "action": "Refund",
+            "status": "Requested",
+            "date": "2019-07-19T04:22:57.137Z"
+        },
+        {
+            "return_id": 2,
+            "order_id": 2413,
+            "user": {
+                "name": "Damon",
+                "profile_img": "resources/images/avatars/temp.jpg",
+                "email": "abx@gmail.com"
+            },
+            "products": [
+                {
+                    "product_id": 1232,
+                    "name": "AccuCheck Glucose Monitor",
+                    "img": "resources/images/ecommerce/001.jpg",
+                    "price": 130,
+                    "quantity": 4,
+                    "reason": "Other"
+                },
+                {
+                    "product_id": 1234,
+                    "name": "Vitamin tablet",
+                    "img": "resources/images/ecommerce/002.jpg",
+                    "price": 76,
+                    "quantity": 3,
+                    "reason": "Other"
+                }
+            ],
+            "quantity": 2,
+            "action": "Refund",
+            "status": "Requested",
+            "date": "2019-07-19T04:22:57.137Z"
+        },
+        {
+            "return_id": 3,
+            "order_id": 2414,
+            "user": {
+                "name": "Damon",
+                "profile_img": "resources/images/avatars/temp.jpg",
+                "email": "abx@gmail.com"
+            },
+            "products": [
+                {
+                    "product_id": 1232,
+                    "name": "AccuCheck Glucose Monitor",
+                    "img": "resources/images/ecommerce/001.jpg",
+                    "price": 130,
+                    "quantity": 4,
+                    "reason": "Other"
+                },
+                {
+                    "product_id": 1234,
+                    "name": "Vitamin tablet",
+                    "img": "resources/images/ecommerce/002.jpg",
+                    "price": 76,
+                    "quantity": 3,
+                    "reason": "Other"
+                }
+            ],
+            "quantity": 2,
+            "action": "Refund",
+            "status": "Requested",
+            "date": "2019-07-19T04:22:57.137Z"
+        },
+        {
+            "return_id": 4,
+            "order_id": 2415,
+            "user": {
+                "name": "Damon",
+                "profile_img": "resources/images/avatars/temp.jpg",
+                "email": "abx@gmail.com"
+            },
+            "products": [
+                {
+                    "product_id": 1232,
+                    "name": "AccuCheck Glucose Monitor",
+                    "img": "resources/images/ecommerce/001.jpg",
+                    "price": 130,
+                    "quantity": 4,
+                    "reason": "Other"
+                },
+                {
+                    "product_id": 1234,
+                    "name": "Vitamin tablet",
+                    "img": "resources/images/ecommerce/002.jpg",
+                    "price": 76,
+                    "quantity": 3,
+                    "reason": "Other"
+                }
+            ],
+            "quantity": 2,
+            "action": "Refund",
+            "status": "Requested",
+            "date": "2019-07-19T04:22:57.137Z"
+        },
+        {
+            "return_id": 5,
+            "order_id": 2416,
+            "user": {
+                "name": "Damon",
+                "profile_img": "resources/images/avatars/temp.jpg",
+                "email": "abx@gmail.com"
+            },
+            "products": [
+                {
+                    "product_id": 1232,
+                    "name": "AccuCheck Glucose Monitor",
+                    "img": "resources/images/ecommerce/001.jpg",
+                    "price": 130,
+                    "quantity": 4,
+                    "reason": "Other"
+                },
+                {
+                    "product_id": 1234,
+                    "name": "Vitamin tablet",
+                    "img": "resources/images/ecommerce/002.jpg",
+                    "price": 76,
+                    "quantity": 3,
+                    "reason": "Other"
+                }
+            ],
+            "quantity": 2,
+            "action": "Refund",
+            "status": "Requested",
+            "date": "2019-07-19T04:22:57.137Z"
+        },
+        {
+            "return_id": 6,
+            "order_id": 2417,
+            "user": {
+                "name": "Damon",
+                "profile_img": "resources/images/avatars/temp.jpg",
+                "email": "abx@gmail.com"
+            },
+            "products": [
+                {
+                    "product_id": 1232,
+                    "name": "AccuCheck Glucose Monitor",
+                    "img": "resources/images/ecommerce/001.jpg",
+                    "price": 130,
+                    "quantity": 4,
+                    "reason": "Other"
+                },
+                {
+                    "product_id": 1234,
+                    "name": "Vitamin tablet",
+                    "img": "resources/images/ecommerce/002.jpg",
+                    "price": 76,
+                    "quantity": 3,
+                    "reason": "Other"
+                }
+            ],
+            "quantity": 2,
+            "action": "Refund",
+            "status": "Approved",
+            "date": "2019-07-19T04:22:57.137Z"
+        },
+        {
+            "return_id": 7,
+            "order_id": 2418,
+            "user": {
+                "name": "Damon",
+                "profile_img": "resources/images/avatars/temp.jpg",
+                "email": "abx@gmail.com"
+            },
+            "products": [
+                {
+                    "product_id": 1232,
+                    "name": "AccuCheck Glucose Monitor",
+                    "img": "resources/images/ecommerce/001.jpg",
+                    "price": 130,
+                    "quantity": 4,
+                    "reason": "Other"
+                },
+                {
+                    "product_id": 1234,
+                    "name": "Vitamin tablet",
+                    "img": "resources/images/ecommerce/002.jpg",
+                    "price": 76,
+                    "quantity": 3,
+                    "reason": "Other"
+                }
+            ],
+            "quantity": 2,
+            "action": "Refund",
+            "status": "Approved",
+            "date": "2019-07-19T04:22:57.137Z"
+        },
+        {
+            "return_id": 8,
+            "order_id": 2419,
+            "user": {
+                "name": "Damon",
+                "profile_img": "resources/images/avatars/temp.jpg",
+                "email": "abx@gmail.com"
+            },
+            "products": [
+                {
+                    "product_id": 1232,
+                    "name": "AccuCheck Glucose Monitor",
+                    "img": "resources/images/ecommerce/001.jpg",
+                    "price": 130,
+                    "quantity": 4,
+                    "reason": "Other"
+                },
+                {
+                    "product_id": 1234,
+                    "name": "Vitamin tablet",
+                    "img": "resources/images/ecommerce/002.jpg",
+                    "price": 76,
+                    "quantity": 3,
+                    "reason": "Other"
+                }
+            ],
+            "quantity": 2,
+            "action": "Refund",
+            "status": "Approved",
+            "date": "2019-07-19T04:22:57.137Z"
+        },
+        {
+            "return_id": 9,
+            "order_id": 2420,
+            "user": {
+                "name": "Damon",
+                "profile_img": "resources/images/avatars/temp.jpg",
+                "email": "abx@gmail.com"
+            },
+            "products": [
+                {
+                    "product_id": 1232,
+                    "name": "AccuCheck Glucose Monitor",
+                    "img": "resources/images/ecommerce/001.jpg",
+                    "price": 130,
+                    "quantity": 4,
+                    "reason": "Other"
+                },
+                {
+                    "product_id": 1234,
+                    "name": "Vitamin tablet",
+                    "img": "resources/images/ecommerce/002.jpg",
+                    "price": 76,
+                    "quantity": 3,
+                    "reason": "Other"
+                }
+            ],
+            "quantity": 2,
+            "action": "Refund",
+            "status": "Requested",
+            "date": "2019-07-19T04:22:57.137Z"
+        },
+        {
+            "return_id": 10,
+            "order_id": 2421,
+            "user": {
+                "name": "Damon",
+                "profile_img": "resources/images/avatars/temp.jpg",
+                "email": "abx@gmail.com"
+            },
+            "products": [
+                {
+                    "product_id": 1232,
+                    "name": "AccuCheck Glucose Monitor",
+                    "img": "resources/images/ecommerce/001.jpg",
+                    "price": 130,
+                    "quantity": 4,
+                    "reason": "Other"
+                },
+                {
+                    "product_id": 1234,
+                    "name": "Vitamin tablet",
+                    "img": "resources/images/ecommerce/002.jpg",
+                    "price": 76,
+                    "quantity": 3,
+                    "reason": "Other"
+                }
+            ],
+            "quantity": 2,
+            "action": "Refund",
+            "status": "Requested",
+            "date": "2019-07-19T04:22:57.137Z"
+        },
+        {
+            "return_id": 11,
+            "order_id": 2422,
+            "user": {
+                "name": "Damon",
+                "profile_img": "resources/images/avatars/temp.jpg",
+                "email": "abx@gmail.com"
+            },
+            "products": [
+                {
+                    "product_id": 1232,
+                    "name": "AccuCheck Glucose Monitor",
+                    "img": "resources/images/ecommerce/001.jpg",
+                    "price": 130,
+                    "quantity": 4,
+                    "reason": "Other"
+                },
+                {
+                    "product_id": 1234,
+                    "name": "Vitamin tablet",
+                    "img": "resources/images/ecommerce/002.jpg",
+                    "price": 76,
+                    "quantity": 3,
+                    "reason": "Other"
+                }
+            ],
+            "quantity": 2,
+            "action": "Refund",
+            "status": "Requested",
+            "date": "2019-07-19T04:22:57.137Z"
+        },
+        {
+            "return_id": 12,
+            "order_id": 2423,
+            "user": {
+                "name": "Damon",
+                "profile_img": "resources/images/avatars/temp.jpg",
+                "email": "abx@gmail.com"
+            },
+            "products": [
+                {
+                    "product_id": 1232,
+                    "name": "AccuCheck Glucose Monitor",
+                    "img": "resources/images/ecommerce/001.jpg",
+                    "price": 130,
+                    "quantity": 4,
+                    "reason": "Other"
+                },
+                {
+                    "product_id": 1234,
+                    "name": "Vitamin tablet",
+                    "img": "resources/images/ecommerce/002.jpg",
+                    "price": 76,
+                    "quantity": 3,
+                    "reason": "Other"
+                }
+            ],
+            "quantity": 2,
+            "action": "Refund",
+            "status": "Approved",
+            "date": "2019-07-19T04:22:57.137Z"
+        },
+        {
+            "return_id": 13,
+            "order_id": 2424,
+            "user": {
+                "name": "Damon",
+                "profile_img": "resources/images/avatars/temp.jpg",
+                "email": "abx@gmail.com"
+            },
+            "products": [
+                {
+                    "product_id": 1232,
+                    "name": "AccuCheck Glucose Monitor",
+                    "img": "resources/images/ecommerce/001.jpg",
+                    "price": 130,
+                    "quantity": 4,
+                    "reason": "Other"
+                },
+                {
+                    "product_id": 1234,
+                    "name": "Vitamin tablet",
+                    "img": "resources/images/ecommerce/002.jpg",
+                    "price": 76,
+                    "quantity": 3,
+                    "reason": "Other"
+                }
+            ],
+            "quantity": 2,
+            "action": "Refund",
+            "status": "Approved",
+            "date": "2019-07-19T04:22:57.137Z"
+        },
+        {
+            "return_id": 14,
+            "order_id": 2434,
+            "user": {
+                "name": "Damon",
+                "profile_img": "resources/images/avatars/temp.jpg",
+                "email": "abx@gmail.com"
+            },
+            "products": [
+                {
+                    "product_id": 1232,
+                    "name": "AccuCheck Glucose Monitor",
+                    "img": "resources/images/ecommerce/001.jpg",
+                    "price": 130,
+                    "quantity": 4,
+                    "reason": "Other"
+                },
+                {
+                    "product_id": 1234,
+                    "name": "Vitamin tablet",
+                    "img": "resources/images/ecommerce/002.jpg",
+                    "price": 76,
+                    "quantity": 3,
+                    "reason": "Other"
+                }
+            ],
+            "quantity": 2,
+            "action": "Refund",
+            "status": "Approved",
+            "date": "2019-07-19T04:22:57.137Z"
+        },
+        {
+            "return_id": 15,
+            "order_id": 2426,
+            "user": {
+                "name": "Damon",
+                "profile_img": "resources/images/avatars/temp.jpg",
+                "email": "abx@gmail.com"
+            },
+            "products": [
+                {
+                    "product_id": 1232,
+                    "name": "AccuCheck Glucose Monitor",
+                    "img": "resources/images/ecommerce/001.jpg",
+                    "price": 130,
+                    "quantity": 4,
+                    "reason": "Other"
+                },
+                {
+                    "product_id": 1234,
+                    "name": "Vitamin tablet",
+                    "img": "resources/images/ecommerce/002.jpg",
+                    "price": 76,
+                    "quantity": 3,
+                    "reason": "Other"
+                }
+            ],
+            "quantity": 2,
+            "action": "Refund",
+            "status": "Approved",
+            "date": "2019-07-19T04:22:57.137Z"
+        },
+        {
+            "return_id": 16,
+            "order_id": 2427,
+            "user": {
+                "name": "Damon",
+                "profile_img": "resources/images/avatars/temp.jpg",
+                "email": "abx@gmail.com"
+            },
+            "products": [
+                {
+                    "product_id": 1232,
+                    "name": "AccuCheck Glucose Monitor",
+                    "img": "resources/images/ecommerce/001.jpg",
+                    "price": 130,
+                    "quantity": 4,
+                    "reason": "Other"
+                },
+                {
+                    "product_id": 1234,
+                    "name": "Vitamin tablet",
+                    "img": "resources/images/ecommerce/002.jpg",
+                    "price": 76,
+                    "quantity": 3,
+                    "reason": "Other"
+                }
+            ],
+            "quantity": 2,
+            "action": "Refund",
+            "status": "Approved",
+            "date": "2019-07-19T04:22:57.137Z"
+        },
+        {
+            "return_id": 17,
+            "order_id": 2428,
+            "user": {
+                "name": "Damon",
+                "profile_img": "resources/images/avatars/temp.jpg",
+                "email": "abx@gmail.com"
+            },
+            "products": [
+                {
+                    "product_id": 1232,
+                    "name": "AccuCheck Glucose Monitor",
+                    "img": "resources/images/ecommerce/001.jpg",
+                    "price": 130,
+                    "quantity": 4,
+                    "reason": "Other"
+                },
+                {
+                    "product_id": 1234,
+                    "name": "Vitamin tablet",
+                    "img": "resources/images/ecommerce/002.jpg",
+                    "price": 76,
+                    "quantity": 3,
+                    "reason": "Other"
+                }
+            ],
+            "quantity": 2,
+            "action": "Refund",
+            "status": "Approved",
+            "date": "2019-07-19T04:22:57.137Z"
+        },
+        {
+            "return_id": 18,
+            "order_id": 2429,
+            "user": {
+                "name": "Damon",
+                "profile_img": "resources/images/avatars/temp.jpg",
+                "email": "abx@gmail.com"
+            },
+            "products": [
+                {
+                    "product_id": 1232,
+                    "name": "AccuCheck Glucose Monitor",
+                    "img": "resources/images/ecommerce/001.jpg",
+                    "price": 130,
+                    "quantity": 4,
+                    "reason": "Other"
+                },
+                {
+                    "product_id": 1234,
+                    "name": "Vitamin tablet",
+                    "img": "resources/images/ecommerce/002.jpg",
+                    "price": 76,
+                    "quantity": 3,
+                    "reason": "Other"
+                }
+            ],
+            "quantity": 2,
+            "action": "Refund",
+            "status": "Approved",
+            "date": "2019-07-19T04:22:57.137Z"
+        },
+        {
+            "return_id": 19,
+            "order_id": 2430,
+            "user": {
+                "name": "Damon",
+                "profile_img": "resources/images/avatars/temp.jpg",
+                "email": "abx@gmail.com"
+            },
+            "products": [
+                {
+                    "product_id": 1232,
+                    "name": "AccuCheck Glucose Monitor",
+                    "img": "resources/images/ecommerce/001.jpg",
+                    "price": 130,
+                    "quantity": 4,
+                    "reason": "Other"
+                },
+                {
+                    "product_id": 1234,
+                    "name": "Vitamin tablet",
+                    "img": "resources/images/ecommerce/002.jpg",
+                    "price": 76,
+                    "quantity": 3,
+                    "reason": "Other"
+                }
+            ],
+            "quantity": 2,
+            "action": "Refund",
+            "status": "Approved",
+            "date": "2019-07-19T04:22:57.137Z"
+        },
+        {
+            "return_id": 20,
+            "order_id": 2431,
+            "user": {
+                "name": "Damon",
+                "profile_img": "resources/images/avatars/temp.jpg",
+                "email": "abx@gmail.com"
+            },
+            "products": [
+                {
+                    "product_id": 1232,
+                    "name": "AccuCheck Glucose Monitor",
+                    "img": "resources/images/ecommerce/001.jpg",
+                    "price": 130,
+                    "quantity": 4,
+                    "reason": "Other"
+                },
+                {
+                    "product_id": 1234,
+                    "name": "Vitamin tablet",
+                    "img": "resources/images/ecommerce/002.jpg",
+                    "price": 76,
+                    "quantity": 3,
+                    "reason": "Other"
+                }
+            ],
+            "quantity": 2,
+            "action": "Refund",
+            "status": "Approved",
+            "date": "2019-07-19T04:22:57.137Z"
+        },
+        {
+            "return_id": 21,
+            "order_id": 2432,
+            "user": {
+                "name": "Damon",
+                "profile_img": "resources/images/avatars/temp.jpg",
+                "email": "abx@gmail.com"
+            },
+            "products": [
+                {
+                    "product_id": 1232,
+                    "name": "AccuCheck Glucose Monitor",
+                    "img": "resources/images/ecommerce/001.jpg",
+                    "price": 130,
+                    "quantity": 4,
+                    "reason": "Other"
+                },
+                {
+                    "product_id": 1234,
+                    "name": "Vitamin tablet",
+                    "img": "resources/images/ecommerce/002.jpg",
+                    "price": 76,
+                    "quantity": 3,
+                    "reason": "Other"
+                }
+            ],
+            "quantity": 2,
+            "action": "Refund",
+            "status": "Approved",
+            "date": "2019-07-19T04:22:57.137Z"
+        }
+    ],
+    "rma_actions": [
+        {
+            "key": 1,
+            "value": "Refund"
+        },
+        {
+            "key": 2,
+            "value": "Replace item"
+        }
+    ],
+    "rma_status": [
+        {
+            "key": 1,
+            "value": "Requested"
+        },
+        {
+            "key": 2,
+            "value": "Approved"
+        },
+        {
+            "key": 3,
+            "value": "Declined"
+        },
+        {
+            "key": 4,
+            "value": "Completed"
+        }
+    ],
+    "rma_reasons": [
+        {
+            "key": 1,
+            "value": "Dead on arrival"
+        },
+        {
+            "key": 2,
+            "value": "Wrong item ordered"
+        },
+        {
+            "key": 3,
+            "value": "Wrong description online"
+        },
+        {
+            "key": 4,
+            "value": "Cannot make it work"
+        },
+        {
+            "key": 5,
+            "value": "Manufacturer defect"
+        },
+        {
+            "key": 6,
+            "value": "Wrong item delivered"
+        },
+        {
+            "key": 7,
+            "value": "Out of warranty"
+        },
+        {
+            "key": 8,
+            "value": "Damaged during shipping"
+        },
+        {
+            "key": 9,
+            "value": "Other"
+        }
+    ]
+}
