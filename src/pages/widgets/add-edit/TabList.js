@@ -124,7 +124,7 @@ const VariantTabPanel = ({ widgetID }) => {
   return (
     <>
       <div style={bottomMargin}>
-        <Button onClick={add}>Add new variant</Button>
+        <Button onClick={add}>Add new Tab</Button>
       </div>
       <Tabs
         // animated

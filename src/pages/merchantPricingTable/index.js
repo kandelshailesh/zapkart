@@ -48,7 +48,7 @@ const Products = (props) => {
   const { params } = match
   const { id } = params
   const [{ response, loading, error }] = useFetching(
-    `/api/catalog/v1/productprice/admin/query?productId=${id}`,
+    `/api/catalog/v1/productprice/linkproducts/${id}`,
   )
   const [state, dispatch] = useReducer(reducer, initialState)
   useEffect(() => {

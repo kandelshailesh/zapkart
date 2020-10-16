@@ -2,7 +2,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useMemo, useState } from 'react'
 import { Form, Input, Button, Radio, notification, Popconfirm, Icon } from 'antd'
-import { slatCompositionSchema } from 'utils/Schema'
+import { medicineTypeSchema } from 'utils/Schema'
 import { formItemLayout, tailFormItemLayout } from 'utils'
 import { withRouter } from 'react-router-dom'
 import useFormValidation from 'hooks/useFormValidation'
@@ -60,23 +60,27 @@ const FormA = ({ initialValues, onSuccess }) => {
 
   const submitForm = () => {
     try {
-      const value = []
-      let count = 0
-      console.log('form Values', values, inputs)
-      Object.keys(values).forEach((key) => {
-        const splited = key.split(/[[\]]{1,2}/)
-        if (splited && splited[0] === 'input') {
-          value.push(values[key])
-          delete values[key]
-          // eslint-disable-next-line no-plusplus
-          count++
+      if (initialValues) {
+        fetchSubmit({ ...values })
+      } else {
+        const value = []
+        let count = 0
+        console.log('form Values', values, inputs)
+        Object.keys(values).forEach((key) => {
+          const splited = key.split(/[[\]]{1,2}/)
+          if (splited && splited[0] === 'input') {
+            value.push(values[key])
+            delete values[key]
+            // eslint-disable-next-line no-plusplus
+            count++
+          }
+        })
+        if (count === 0) {
+          throw { message: 'Please Add atleast one name' }
         }
-      })
-      if (count === 0) {
-        throw { message: 'Please Add atleast one name' }
-      }
 
-      fetchSubmit({ ...values, name: value })
+        fetchSubmit({ ...values, name: value })
+      }
     } catch (err) {
       notification.error({
         message: STRINGS.error,
@@ -129,15 +133,15 @@ const FormA = ({ initialValues, onSuccess }) => {
     // validateForm,
     // touched,
     // setTouched,
-  } = useFormValidation(initialVal, slatCompositionSchema, submitForm) // file as object {fileInputName:'icon', maxCount:1}
+  } = useFormValidation(initialVal, medicineTypeSchema, submitForm) // file as object {fileInputName:'icon', maxCount:1}
 
   const formItems = [
-    // {
-    //   type: <Input value={values.name} name="name" />,
-    //   key: 'name',
-    //   label: 'Name',
-    //   error: errors.name,
-    // },
+    {
+      type: <Input value={values.name} name="name" />,
+      key: 'name',
+      label: 'Name',
+      error: errors.name,
+    },
     {
       type: (
         <Radio.Group name="status" defaultValue="hold" buttonStyle="solid">
@@ -155,8 +159,9 @@ const FormA = ({ initialValues, onSuccess }) => {
     },
     {
       type: <AddNew pullRight={false} add onClick={handleAdd} attribute="medicine type" />,
-      key: 'add test',
+      key: 'add-test',
       className: 'add-new-test-btn',
+      dependancy: true,
     },
   ]
 
@@ -175,6 +180,36 @@ const FormA = ({ initialValues, onSuccess }) => {
               <strong>{item.heading}</strong>
             </h4>
           )
+
+        if (item.key === 'name') {
+          if (initialValues) {
+            return (
+              <Form.Item
+                key={item.key}
+                label={item.label}
+                validateStatus={item.error && 'error'}
+                help={item.error}
+              >
+                {item.type}
+              </Form.Item>
+            )
+          }
+          return null
+        }
+        if (item.key === 'add-test') {
+          if (!initialValues)
+            return (
+              <Form.Item
+                key={item.key}
+                label={item.label}
+                validateStatus={item.error && 'error'}
+                help={item.error}
+              >
+                {item.type}
+              </Form.Item>
+            )
+          return null
+        }
         return (
           <Form.Item
             key={item.key}

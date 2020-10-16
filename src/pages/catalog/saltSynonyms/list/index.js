@@ -174,7 +174,7 @@ const Products = () => {
       sorter: true,
       multiple: 1,
       render: (text, record) => (
-        <Link className="utils__link--underlined" to={`${LINKS.saltsynonyms}/${record._id}`}>
+        <Link className="utils__link--underlined" to={`${LINKS.editsaltsynonyms}/${record._id}`}>
           {text}
         </Link>
       ),
@@ -216,7 +216,7 @@ const Products = () => {
       key: 'action',
       render: (record) => (
         <span>
-          <Link to={`${LINKS.saltsynonyms}/${record._id}`}>
+          <Link to={`${LINKS.editsaltsynonyms}/${record._id}`}>
             <Button icon="edit" className="mr-1" size="small" />
           </Link>
           {state.products.length >= 1 ? (

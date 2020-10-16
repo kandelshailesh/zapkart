@@ -151,7 +151,7 @@ const OrdersList = () => {
                 }}
               />
             </TabPane>
-            <TabPane tab="compleated order" key="3">
+            <TabPane tab="Completed order" key="3">
               Content of Tab Pane 3
             </TabPane>
           </Tabs>

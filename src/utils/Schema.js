@@ -640,11 +640,6 @@ export const profileSchema = Yup.object().shape({
     .required('Required'),
 })
 
-export const countrySchema = Yup.object().shape({
-  country: Yup.string().required('Required'),
-  status: Yup.string().required('Required'),
-})
-
 export const stateSchema = Yup.object().shape({
   country: Yup.string().required('Required'),
   state: Yup.string().required('Required'),
@@ -688,4 +683,21 @@ export const widegtSchema = Yup.object().shape({
   startDate: Yup.string().required('Required'),
   endDate: Yup.string().required('Required'),
   diplayOrder: Yup.number().required('Required'),
+})
+
+export const customAttrubitesSchema = Yup.object().shape({
+  country: Yup.string().required('Required'),
+  status: Yup.string().required('Required'),
+  label: Yup.string().required('Required'),
+  code: Yup.string().required('Required'),
+  inputType: Yup.array().required('Required'),
+  useInFilter: Yup.string().required('Required'),
+  comparableOnfrontend: Yup.string().required('Required'),
+  useInRecemondation: Yup.string().required('Required'),
+  values: Yup.array().required('Required'),
+  image: Yup.array()
+    .nullable()
+    .test('fileFormat', 'Unsupported Format', checkFileType)
+    .test('emptyArray', 'A file is required', (a) => a && a.length !== 0)
+    .required('A file is required'),
 })

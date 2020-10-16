@@ -1,4 +1,4 @@
-import { LINKS } from '_constants'
+import { ATTRIBUTES_PATH, LINKS } from '_constants'
 
 export async function getLeftMenuData() {
   return [
@@ -110,6 +110,12 @@ export async function getLeftMenuData() {
         //   url: '/catalog/reviews',
         //   pro: false
         // }
+        {
+          title: 'Custom Attributes',
+          key: 'customattributes',
+          url: ATTRIBUTES_PATH.list,
+          pro: false,
+        },
       ],
     },
     {
@@ -194,16 +200,16 @@ export async function getLeftMenuData() {
       key: 'localisation',
       icon: 'icmn icmn-location',
       children: [
-        {
-          title: 'Countries',
-          key: 'countery',
-          url: '/localisation/countries',
-        },
-        {
-          title: 'States',
-          key: 'states',
-          url: '/localisation/state',
-        },
+        // {
+        //   title: 'Countries',
+        //   key: 'countery',
+        //   url: '/localisation/countries',
+        // },
+        // {
+        //   title: 'States',
+        //   key: 'states',
+        //   url: '/localisation/state',
+        // },
         {
           title: 'Geozone',
           key: 'geozome',
@@ -219,11 +225,11 @@ export async function getLeftMenuData() {
           key: 'tax-rates',
           url: '/localisation/tax-rates',
         },
-        {
-          title: 'Zones',
-          key: 'zones',
-          url: '/localisation/zones',
-        },
+        // {
+        //   title: 'Zones',
+        //   key: 'zones',
+        //   url: '/localisation/zones',
+        // },
       ],
     },
     {

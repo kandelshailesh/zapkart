@@ -4,12 +4,12 @@ import React, { useMemo } from 'react'
 import { withRouter } from 'react-router'
 import { Input, Radio, Select } from 'antd'
 import { geoZoneSchema } from 'utils/Schema'
-import { CATALOG_API_URL } from '_constants'
+import { STATE_LIST_API } from '_constants'
 import Form from 'components/Form'
 import useFetching from 'hooks/useFetchingNoReducers'
 
 const EditCreateGeozone = ({ initialValues, HandleOnSubmit }) => {
-  const [{ response: selectSate }] = useFetching(CATALOG_API_URL.state)
+  const [{ response: selectSate }] = useFetching(STATE_LIST_API.getStates)
 
   const initialVal = useMemo(() => {
     if (initialValues) {

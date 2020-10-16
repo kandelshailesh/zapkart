@@ -216,7 +216,7 @@ const Products = () => {
       key: 'action',
       render: (record) => (
         <span>
-          <Link to={`${LINKS.medicinetype}/${record._id}`}>
+          <Link to={`${LINKS.editmedicinetype}/${record._id}`}>
             <Button icon="edit" className="mr-1" size="small" />
           </Link>
           {state.products.length >= 1 ? (

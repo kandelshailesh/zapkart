@@ -16,6 +16,12 @@ export const ROLES = {
   merchant: 'merchant',
   enduser: 'enduser',
 }
+
+export const ATTRIBUTES_PATH = {
+  list: '/catalog/customattributes/list',
+  add: '/catalog/customattributes/create',
+  edit: '/catalog/customattributes/attributes/:id',
+}
 export const LINKS = {
   addAttribute: '/catalog/attributes/add-attribute-group',
   editAttribute: '/catalog/attributes/attribute',
@@ -133,6 +139,10 @@ export const CATALOG_API_URL = {
   widgetTabCreate: '/api/catalog/v1/widgetTab/create',
 
   updateProductPriceByAdmin: '/api/catalog/v1/productprice/admin',
+}
+
+export const STATE_LIST_API = {
+  getStates: 'api/catalog/v1/indianpincode?stateName=1',
 }
 
 export const USERGROUP_API_URL = {

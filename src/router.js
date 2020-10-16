@@ -6,7 +6,7 @@ import { ConnectedRouter } from 'connected-react-router'
 import Loader from 'components/LayoutComponents/Loader'
 import IndexLayout from 'layouts'
 import NotFoundPage from 'pages/404'
-import { LINKS, ROLES } from '_constants'
+import { ATTRIBUTES_PATH, LINKS, ROLES } from '_constants'
 import { connect } from 'react-redux'
 import PrivateRoute from './PrivateRoute'
 
@@ -136,6 +136,22 @@ const routes = [
   {
     path: LINKS.addAttribute,
     component: loadable(() => import('pages/catalog/attributes/attributes-add')),
+    exact: true,
+  },
+  // /catalog/customattributes
+  {
+    path: ATTRIBUTES_PATH.list,
+    component: loadable(() => import('pages/catalog/customAttributes')),
+    exact: true,
+  },
+  {
+    path: ATTRIBUTES_PATH.edit,
+    component: loadable(() => import('pages/catalog/customAttributes/add-edit')),
+    exact: true,
+  },
+  {
+    path: ATTRIBUTES_PATH.add,
+    component: loadable(() => import('pages/catalog/customAttributes/add-edit')),
     exact: true,
   },
   // Catalog/Brand
@@ -520,36 +536,36 @@ const routes = [
     component: loadable(() => import('pages/upload-data')),
     exact: true,
   },
-  {
-    path: '/localisation/countries',
-    component: loadable(() => import('pages/localisation/countries')),
-    exact: true,
-  },
-  {
-    path: '/localisation/countries/add',
-    component: loadable(() => import('pages/localisation/countries/add-edit')),
-    exact: true,
-  },
-  {
-    path: '/localisation/countries/edit/:id',
-    component: loadable(() => import('pages/localisation/countries/add-edit')),
-    exact: true,
-  },
-  {
-    path: '/localisation/state',
-    component: loadable(() => import('pages/localisation/states')),
-    exact: true,
-  },
-  {
-    path: '/localisation/state/add',
-    component: loadable(() => import('pages/localisation/states/add-edit')),
-    exact: true,
-  },
-  {
-    path: '/localisation/state/edit/:id',
-    component: loadable(() => import('pages/localisation/states/add-edit')),
-    exact: true,
-  },
+  // {
+  //   path: '/localisation/countries',
+  //   component: loadable(() => import('pages/localisation/countries')),
+  //   exact: true,
+  // },
+  // {
+  //   path: '/localisation/countries/add',
+  //   component: loadable(() => import('pages/localisation/countries/add-edit')),
+  //   exact: true,
+  // },
+  // {
+  //   path: '/localisation/countries/edit/:id',
+  //   component: loadable(() => import('pages/localisation/countries/add-edit')),
+  //   exact: true,
+  // },
+  // {
+  //   path: '/localisation/state',
+  //   component: loadable(() => import('pages/localisation/states')),
+  //   exact: true,
+  // },
+  // {
+  //   path: '/localisation/state/add',
+  //   component: loadable(() => import('pages/localisation/states/add-edit')),
+  //   exact: true,
+  // },
+  // {
+  //   path: '/localisation/state/edit/:id',
+  //   component: loadable(() => import('pages/localisation/states/add-edit')),
+  //   exact: true,
+  // },
   {
     path: '/localisation/geozone',
     component: loadable(() => import('pages/localisation/geoZone')),
