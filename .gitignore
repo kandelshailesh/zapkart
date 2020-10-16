@@ -34,4 +34,3 @@ notes.txt
 *.copy.js
 /src/pages/orders-new/view-order copy
 *.original.js
-package.json
