@@ -128,21 +128,21 @@ const AGeneral = () => {
   // }, [values.countryId])
 
   useEffect(() => {
-    console.log('MMM dd', values.stateId)
-    if (values.stateId && values.stateId !== '') {
+    console.log('MMM dd', values.state)
+    if (values.state && values.state !== '') {
       setCitie([])
       // setValues((prev) => ({ ...prev, cityId: null }))
-      fetchCity(values.stateId)
+      fetchCity(values.state)
     }
-  }, [values.stateId])
+  }, [values.state])
 
   useEffect(() => {
-    console.log('zipcode',values.cityId)
-    if (values.cityId && values.cityId !==''){
+    console.log('zipcode',values.district)
+    if (values.district && values.district !==''){
       setZip([])
-      fetchZip(values.cityId)
+      fetchZip(values.district)
     }
-  },[values.cityId])
+  },[values.district])
 
   // useEffect(() => {
   //   const url = CATALOG_API_URL.getStates
@@ -344,7 +344,7 @@ const AGeneral = () => {
           ))}
         </Select>
       ),
-      key: 'stateId',
+      key: 'state',
       label: 'State',
       resetOnChange: 'countryId',
     },
@@ -374,9 +374,9 @@ const AGeneral = () => {
           ))}
         </Select>
       ),
-      key: 'cityId',
+      key: 'district',
       label: 'District',
-      resetOnChange: 'stateId',
+      resetOnChange: 'state',
     },
     {
       type: <Input name="city" />,
@@ -406,7 +406,7 @@ const AGeneral = () => {
       ),
       key: 'zipcode',
       label: 'ZipCode',
-      resetOnChange: 'cityId',
+      resetOnChange: 'district',
     },
 
     {
