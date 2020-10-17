@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState,useContext } from 'react'
 import { Radio, Input, Select, DatePicker } from 'antd'
-import { getUserGroups, getCountries, getStat, getCity } from 'services'
+import { getUserGroups, getCountries, getStat, getCity,getZip } from 'services'
 import  Form, { FormContext }  from 'components/Form'
 
 // import PropTypes from 'prop-types'
@@ -38,8 +38,10 @@ const AGeneral = () => {
   const [countries, setCountries] = useState([])
   const [stat, setStats] = useState([])
   const [citie, setCitie] = useState([])
+  const [zip,setZip] = useState([])
   const [cityval,setCityval] = useState('')
   const [stateval,setStateval] = useState('KERALA')
+  const [zipval,setZipVal] = useState('')
   // const [hasError, setErrors] = useState(false);
   // const [medicineTypes, setMedicineTypes] = useState([])
 
@@ -71,6 +73,11 @@ const AGeneral = () => {
   const fetchCity = async id => {
     const cData = await getCity(id)
     if (cData) setCitie(cData)
+  }
+
+  const fetchZip = async id => {
+    const cData = await getZip(id)
+    if (cData) setZip(cData)
   }
 
   // fetch categories, brands, compositions on component mount
@@ -128,6 +135,14 @@ const AGeneral = () => {
       fetchCity(values.stateId)
     }
   }, [values.stateId])
+
+  useEffect(() => {
+    console.log('zipcode',values.cityId)
+    if (values.cityId && values.cityId !==''){
+      setZip([])
+      fetchZip(values.cityId)
+    }
+  },[values.cityId])
 
   // useEffect(() => {
   //   const url = CATALOG_API_URL.getStates
@@ -203,8 +218,8 @@ const AGeneral = () => {
   //   setStateval(e.taget.value)
   // }
 
-  console.log(citie)
-  console.log('state value is',stateval)
+  // console.log(citie)
+  // console.log('state value is',stateval)
 
   // const xyz = (e) => {
   //   setStateval({value: e.target.value})
@@ -269,33 +284,33 @@ const AGeneral = () => {
       key: 'address',
       label: 'Address',
     },
-    {
-      type: (
-        <Select
-          showSearch
-          style={widthStyle}
-          placeholder="Select Country"
-          optionFilterProp="children"
-          // onChange={e => setValues(a => ({ ...a, speciality: e.key }))}
-          // onChange={onChangeCountry}
-          // onFocus={onFocus}
-          // onBlur={onBlur}
-          // onSearch={onSearch}
-          filterOption={(input, option) =>
-            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-          }
-        >
-          {/* <Select.Option selected value={data.speciality._id}>{data.speciality.name}</Select.Option> */}
-          {countries.map(i => (
-            <Select.Option key={i.id} value={i.id}>
-              {i.name}
-            </Select.Option>
-          ))}
-        </Select>
-      ),
-      key: 'countryId',
-      label: 'Country',
-    },
+    // {
+    //   type: (
+    //     <Select
+    //       showSearch
+    //       style={widthStyle}
+    //       placeholder="Select Country"
+    //       optionFilterProp="children"
+    //       // onChange={e => setValues(a => ({ ...a, speciality: e.key }))}
+    //       // onChange={onChangeCountry}
+    //       // onFocus={onFocus}
+    //       // onBlur={onBlur}
+    //       // onSearch={onSearch}
+    //       filterOption={(input, option) =>
+    //         option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+    //       }
+    //     >
+    //       {/* <Select.Option selected value={data.speciality._id}>{data.speciality.name}</Select.Option> */}
+    //       {countries.map(i => (
+    //         <Select.Option key={i.id} value={i.id}>
+    //           {i.name}
+    //         </Select.Option>
+    //       ))}
+    //     </Select>
+    //   ),
+    //   key: 'countryId',
+    //   label: 'Country',
+    // },
     {
       type: (
         <Select
@@ -339,7 +354,7 @@ const AGeneral = () => {
           // labelInValue
           showSearch
           style={widthStyle}
-          placeholder="Select City"
+          placeholder="Select District"
           optionFilterProp="children"
           // onChange={e => setValues(a => ({ ...a, speciality: e.key }))}
           // onChange={onChangeCity}
@@ -360,14 +375,40 @@ const AGeneral = () => {
         </Select>
       ),
       key: 'cityId',
-      label: 'City',
+      label: 'District',
       resetOnChange: 'stateId',
     },
     {
-      type: <Input name="zipcode" />,
-      key: 'zipcode',
-      label: 'zipCode',
+      type: <Input name="city" />,
+      key: 'city',
+      label: 'City',
     },
+    {
+      type: (
+        <Select
+          
+          showSearch
+          style={widthStyle}
+          placeholder="Select Zipcode"
+          optionFilterProp="children"
+          onChange={e => setZipVal({zipval:e.target.value})}
+          value={zipval}
+          filterOption={(input, option) =>
+            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+          }
+        >
+          {zip.map(i => (
+            <Select.Option key={i} value={i}>
+              {i}
+            </Select.Option>
+          ))}
+        </Select>
+      ),
+      key: 'zipcode',
+      label: 'ZipCode',
+      resetOnChange: 'cityId',
+    },
+
     {
       type: <Input name="regnumber" />,
       key: 'regnumber',

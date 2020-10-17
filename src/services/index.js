@@ -397,6 +397,16 @@ export async function getStat(){
   return null
 }
 
+export async function getZip(dist){
+  try{
+    const {data} = await callApi(`/api/catalog/v1/indianpincode?pincodes=${dist}`)
+    if (data) return data
+  }catch (error) {
+    console.log(error)
+  }
+  return null
+}
+
 export async function getGeneralSettings() {
   try {
     const res = await callApi(`/api/catalog/v1/generalSettings`)
