@@ -1,12 +1,16 @@
 /* eslint-disable no-underscore-dangle */
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState,useContext } from 'react'
 import { Radio, Input, Select, DatePicker } from 'antd'
-import { getUserGroups, getCountries, getStates, getCities } from 'services'
-import Form, { FormContext } from 'components/Form'
+import { getUserGroups, getCountries, getStat, getCity } from 'services'
+import  Form, { FormContext }  from 'components/Form'
+
 // import PropTypes from 'prop-types'
 // import useUpload from 'hooks/useUpload'
 
-import { ROLES } from '_constants'
+import { ROLES  } from '_constants'
+
+// const  { Option }  = Select.Option
+// import {  } from '_constants'
 
 // const formItemLayout = {
 //   labelCol: {
@@ -32,8 +36,11 @@ const AGeneral = () => {
 
   const [merchantTypes, setMerchantTypes] = useState([])
   const [countries, setCountries] = useState([])
-  const [states, setStates] = useState([])
-  const [cities, setCities] = useState([])
+  const [stat, setStats] = useState([])
+  const [citie, setCitie] = useState([])
+  const [cityval,setCityval] = useState('')
+  const [stateval,setStateval] = useState('KERALA')
+  // const [hasError, setErrors] = useState(false);
   // const [medicineTypes, setMedicineTypes] = useState([])
 
   // console.log("d3333333",values.data.name)
@@ -54,19 +61,29 @@ const AGeneral = () => {
   //   setFileList: setFileListImages,
   // } = useUpload(1)
 
-  const fetchstates = async id => {
-    console.log('MMM fetching states')
-    const cData = await getStates(id)
-    console.log('MMM', cData)
-    if (cData) setStates(cData)
-  }
+  // const fetchstates = async id => {
+  //   console.log('MMM fetching states')
+  //   const cData = await getStates(id)
+  //   console.log('MMM', cData)
+  //   if (cData) setStates(cData)
+  // }
 
-  const fetchcities = async id => {
-    const cData = await getCities(id)
-    if (cData) setCities(cData)
+  const fetchCity = async id => {
+    const cData = await getCity(id)
+    if (cData) setCitie(cData)
   }
 
   // fetch categories, brands, compositions on component mount
+
+  useEffect(() => {
+    const fetchStat = async () => {
+      const cData = await getStat()
+      if (cData) setStats(cData)
+      console.log('state is ',stat)
+    }
+    fetchStat()
+
+  },[stateval])
   useEffect(() => {
     const fetchMerchantType = async () => {
       const cData = await getUserGroups(ROLES.merchant)
@@ -77,29 +94,71 @@ const AGeneral = () => {
       if (cData) setCountries(cData)
       console.log('888', countries)
     }
+
+   
+
+    // const fetchCity = async() => {
+    //   const cData = await getCity(stateval)
+    //   console.log('passing state is',stateval)
+    //   if (cData) setCitie(cData)
+    //   console.log('city is ',citie)
+    // }
     // setFileListImages(values.avatarlocation)
     // const fetchMedicineTypes = async ()
     fetchMerchantType()
     fetchCountries()
+    // fetchCity()
+    console.log('stateval')
   }, [])
 
-  useEffect(() => {
-    console.log('MMM cc', values.countryId)
-    if (values.countryId && values.countryId !== '') {
-      setStates([])
-      // setValues((prev) => ({ ...prev, stateId: null, cityId:null }))
-      fetchstates(values.countryId)
-    }
-  }, [values.countryId])
+  // useEffect(() => {
+  //   console.log('MMM cc', values.countryId)
+  //   if (values.countryId && values.countryId !== '') {
+  //     // setStates([])
+  //     // setValues((prev) => ({ ...prev, stateId: null, cityId:null }))
+  //     fetchstates(values.countryId)
+  //   }
+  // }, [values.countryId])
 
   useEffect(() => {
     console.log('MMM dd', values.stateId)
     if (values.stateId && values.stateId !== '') {
-      setCities([])
+      setCitie([])
       // setValues((prev) => ({ ...prev, cityId: null }))
-      fetchcities(values.stateId)
+      fetchCity(values.stateId)
     }
   }, [values.stateId])
+
+  // useEffect(() => {
+  //   const url = CATALOG_API_URL.getStates
+  //   async function fetchData() {
+  //     const res = await fetch(url);
+  //     res
+  //       .json()
+  //       .then(result => setStats(result))
+  //       .catch(err => setErrors(err));
+  //   }
+
+  //   fetchData();
+  // });
+
+  // useEffect(() => {
+  //   const url = CATALOG_API_URL.getCity
+  //   async function fetchData() {
+  //     const res = await fetch(url);
+  //     res
+  //       .json()
+  //       .then(result => setCitie(result))
+  //       .catch(err => setErrors(err));
+  //   }
+
+  //   fetchData();
+  //   console.log('error is',hasError)
+  // });
+
+  // const onChangeStates = (e) => {
+
+  // }
 
   // const onChangeStartDate = (e) =>
   //   setValues((a) => ({ ...a, establishdate: new Date(e).toISOString() }))
@@ -133,6 +192,32 @@ const AGeneral = () => {
   //   setValues((a) => ({ ...a, stateId: e }))
   //   fetchcities(e)
   // }
+
+  
+
+  // const onCityChange = (e) => {
+  //   setCityval(e.target.value)
+  // }
+
+  // const onStateChange = (e) => {
+  //   setStateval(e.taget.value)
+  // }
+
+  console.log(citie)
+  console.log('state value is',stateval)
+
+  // const xyz = (e) => {
+  //   setStateval({value: e.target.value})
+  // }
+
+  // const chang = (event) => {
+  //   setStateval({value: event.target.value})
+  // } 
+  // useEffect(() => {
+  //   chang()
+    
+  // },[stateval])
+
 
   const formItems = [
     { heading: 'General' },
@@ -219,20 +304,28 @@ const AGeneral = () => {
           style={widthStyle}
           placeholder="Select State"
           optionFilterProp="children"
+          // onSelect={xyz}
           // onChange={e => setValues(a => ({ ...a, speciality: e.key }))}
           // onChange={onChangeState}
           // onFocus={onFocus}
           // onBlur={onBlur}
           // onSearch={onSearch}
+          // onChange={xyz}
+          onChange={e => setStateval({stateval:e.target.value})}
+          value={stateval}
+          // onSelect={e => setStateval(e.target.value)}
+          
           filterOption={(input, option) =>
             option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
           }
         >
+          {/* console.log(stateval) */}
           {/* <Select.Option selected value={data.speciality._id}>{data.speciality.name}</Select.Option> */}
-          {states.map(i => (
-            <Select.Option key={i.id} value={i.id}>
-              {i.name}
-            </Select.Option>
+          {stat.map(i => (
+            // <Select.Option key={i} value={i}>
+            //   {i}
+            // </Select.Option>
+            <Select.Option key={i} value={i} onSelect={(e) => {console.log('stvl',stateval,e); setStateval({stateval:e.target.value})}}>{i}</Select.Option>
           ))}
         </Select>
       ),
@@ -253,13 +346,15 @@ const AGeneral = () => {
           // onFocus={onFocus}
           // onBlur={onBlur}
           // onSearch={onSearch}
+          onChange={e => setCityval({cityval:e.target.value})}
+          value={cityval}
           filterOption={(input, option) =>
             option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
           }
         >
-          {cities.map(i => (
-            <Select.Option key={i.id} value={i.id}>
-              {i.name}
+          {citie.map(i => (
+            <Select.Option key={i} value={i}>
+              {i}
             </Select.Option>
           ))}
         </Select>

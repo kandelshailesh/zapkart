@@ -359,10 +359,10 @@ export async function getCountries() {
 
 export async function getStates(id) {
   try {
-    const { data } = await callApi(`/api/backend/v1/state/${id}`)
+    const { data } = await callApi(`/api/catalog/v1/indianpincode?stateName=1`/{id})
     if (data) return data
   } catch (error) {
-    console.log(error)
+    console.log('error state',error)
   }
   return null
 }
@@ -372,6 +372,26 @@ export async function getCities(id) {
     const { data } = await callApi(`/api/backend/v1/city/${id}`)
     if (data) return data
   } catch (error) {
+    console.log('error city',error)
+  }
+  return null
+}
+
+export async function getCity(sname){
+  try{
+    const {data} = await callApi(`/api/catalog/v1/indianpincode?districts=${sname}`)
+    if (data) return data
+  }catch (error) {
+    console.log(error)
+  }
+  return null
+}
+
+export async function getStat(){
+  try{
+    const {data} = await callApi('/api/catalog/v1/indianpincode?stateName=1')
+    if (data) return data
+  }catch (error) {
     console.log(error)
   }
   return null

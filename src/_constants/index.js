@@ -97,6 +97,8 @@ export const CATALOG_API_URL = {
   getShipments: '/api/backend/v1/shipment/all',
   signup: '/api/backend/v1/users/register',
   editUser: '/api/backend/v1/users/update',
+  getStates: '/api/catalog/v1/indianpincode?stateName=1',
+  getCity: '/api/catalog/v1/indianpincode',
 
   manufacture: '/api/catalog/v1/manufacture',
   sizeChart: '/api/catalog/v1/sizeChart',
