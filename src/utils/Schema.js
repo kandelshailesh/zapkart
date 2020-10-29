@@ -619,6 +619,7 @@ export const generalSettingsSchema = Yup.object().shape({
   projectName: Yup.string().required('Required'),
   projectLabel: Yup.string().required('Required'),
   shippingCost: Yup.number().typeError(NUMBER_ERROR_MSG),
+  shippingAmount: Yup.number().typeError(NUMBER_ERROR_MSG).required('Required'),
   minCartValue: Yup.number().typeError(NUMBER_ERROR_MSG).required('Required'),
   codEnabled: Yup.boolean().required('Required'),
 })
@@ -686,18 +687,39 @@ export const widegtSchema = Yup.object().shape({
 })
 
 export const customAttrubitesSchema = Yup.object().shape({
-  country: Yup.string().required('Required'),
-  status: Yup.string().required('Required'),
   label: Yup.string().required('Required'),
   code: Yup.string().required('Required'),
-  inputType: Yup.array().required('Required'),
+  inputType: Yup.string().required('Required'),
   useInFilter: Yup.string().required('Required'),
   comparableOnfrontend: Yup.string().required('Required'),
   useInRecemondation: Yup.string().required('Required'),
-  values: Yup.array().required('Required'),
-  image: Yup.array()
+})
+
+export const createOrderSchema = Yup.object().shape({
+  userId: Yup.string().required('Required'),
+  cart: Yup.array().required('Required'),
+  shippingId: Yup.string().required('Required'),
+})
+
+export const AddressSchema = Yup.object().shape({
+  fullName: Yup.string().required('Required'),
+  city: Yup.string().required('Required'),
+  state: Yup.string().required('Required'),
+  address_type: Yup.string().required('Required'),
+  pincode: Yup.string().required('Required'),
+  mobileNo: Yup.string().required('Required'),
+  houseNo: Yup.string().required('Required'),
+  street: Yup.string().required('Required'),
+  landmark: Yup.string().required('Required'),
+  status: Yup.string().required('Required'),
+})
+
+export const prescriptionSchema = Yup.object().shape({
+  prescription: Yup.array()
     .nullable()
-    .test('fileFormat', 'Unsupported Format', checkFileType)
+    .test('fileFormat', 'Unsupported Format', (prescription) =>
+      checkFileType(prescription, PDF_FORMAT),
+    )
     .test('emptyArray', 'A file is required', (a) => a && a.length !== 0)
     .required('A file is required'),
 })

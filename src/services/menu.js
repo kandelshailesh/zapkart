@@ -1,4 +1,4 @@
-import { ATTRIBUTES_PATH, LINKS } from '_constants'
+import { PATH_CUSTOM_ATTRIBUTES, LINKS } from '_constants'
 
 export async function getLeftMenuData() {
   return [
@@ -113,7 +113,7 @@ export async function getLeftMenuData() {
         {
           title: 'Custom Attributes',
           key: 'customattributes',
-          url: ATTRIBUTES_PATH.list,
+          url: PATH_CUSTOM_ATTRIBUTES.list,
           pro: false,
         },
       ],

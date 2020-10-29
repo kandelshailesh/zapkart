@@ -1,9 +1,11 @@
+/* eslint-disable camelcase */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable import/prefer-default-export */
 import { notification } from 'antd'
 import { ERROR_TRY_LATER, CATALOG_API_URL } from '_constants'
 import difference from 'lodash/difference'
 import callApi from 'utils/callApi'
+import { isEmpty } from 'lodash'
 
 const requiredFields = [
   'name',
@@ -52,6 +54,7 @@ const requiredFields = [
   'saleCommision',
   'productId',
   'merchantId',
+  'price_include_tax',
 ]
 
 export async function getProducts(query) {
@@ -220,6 +223,58 @@ export async function addProduct(values, parentId) {
           JSON.stringify(value.map((i) => ({ attributeGroup: i.attribute, value: i.value }))),
         )
         break
+      case 'cutomAttributes':
+        if (!isEmpty(value) && value[0]?.attribute !== '') {
+          formData.append(
+            'cutomAttributes',
+            JSON.stringify(
+              value.map((i) => ({
+                attribute: i.attribute,
+                values: i.value,
+                inputType: i.inputType,
+              })),
+            ),
+          )
+        } else {
+          formData.append('cutomAttributes', [])
+        }
+
+        break
+      case 'groupPrice':
+        if (!isEmpty(value) && value[0]?.customerGroup !== '') {
+          formData.append(
+            'groupPrice',
+            JSON.stringify(
+              value.map((i) => ({
+                customerGroup: i.customerGroup,
+                price: i.price,
+              })),
+            ),
+          )
+        } else {
+          formData.append('groupPrice', [])
+        }
+
+        break
+
+      case 'tierPrice':
+        if (!isEmpty(value) && value[0]?.customerGroup !== '') {
+          formData.append(
+            'tierPrice',
+            JSON.stringify(
+              value.map((i) => ({
+                customerGroup: i.customerGroup,
+                price: i.price,
+                quantity: i.quantity,
+              })),
+            ),
+          )
+        } else {
+          formData.append('tierPrice', [])
+        }
+
+        break
+
       case 'returnPeriod': {
         console.log('is returnable', values.returnable)
         if (values.returnable) formData.append(key, value)
@@ -241,6 +296,11 @@ export async function addProduct(values, parentId) {
         if (parentId) value.filter((i) => i.url).map((i) => formData.append('imageUrl[]', i.url))
         break
       }
+      case 'parentId':
+        formData.append('parentId', value)
+        formData.append('variantType', value ? 'multiple' : 'single')
+        break
+
       default:
         if (requiredFields.includes(key)) formData.append(key, value)
         break
@@ -249,14 +309,6 @@ export async function addProduct(values, parentId) {
   formData.append('contents', JSON.stringify(st))
   formData.append('vediolink', JSON.stringify(tempVideoLink))
   formData.append('purchaseCount', 0)
-  // formData.append('maxOrderQty', 5)
-  // formData.append('minOrderQty', 1)
-  formData.append('parentId', parentId)
-  console.log('product service', 'parentId', parentId)
-  console.log('product service', 'typeof parentId', typeof parentId)
-  console.log('product service', 'parentId?', !!parentId)
-  formData.append('variantType', parentId ? 'multiple' : 'single')
-
   const options = {
     method: 'POST',
     body: formData,
@@ -283,7 +335,7 @@ export async function addProduct(values, parentId) {
  * @param {Object} originalData
  * @param {string} parentId
  */
-export async function editProduct(values, id, originalData, parentId) {
+export async function editProduct(values, id, originalData) {
   const url = `${CATALOG_API_URL.getProducts}/${id}`
   const formData = new FormData()
 
@@ -385,6 +437,58 @@ export async function editProduct(values, id, originalData, parentId) {
           JSON.stringify(value.map((i) => ({ attributeGroup: i.attribute, value: i.value }))),
         )
         break
+      case 'cutomAttributes':
+        if (!isEmpty(value) && value[0]?.attribute !== '') {
+          formData.append(
+            'cutomAttributes',
+            JSON.stringify(
+              value.map((i) => ({
+                attribute: i.attribute,
+                values: i.value,
+                inputType: i.inputType,
+              })),
+            ),
+          )
+        } else {
+          formData.append('cutomAttributes', [])
+        }
+
+        break
+      case 'groupPrice':
+        if (!isEmpty(value) && value[0]?.customerGroup !== '') {
+          formData.append(
+            'groupPrice',
+            JSON.stringify(
+              value.map((i) => ({
+                customerGroup: i.customerGroup,
+                price: i.price,
+              })),
+            ),
+          )
+        } else {
+          formData.append('groupPrice', [])
+        }
+
+        break
+
+      case 'tierPrice':
+        if (!isEmpty(value) && value[0]?.customerGroup !== '') {
+          formData.append(
+            'tierPrice',
+            JSON.stringify(
+              value.map((i) => ({
+                customerGroup: i.customerGroup,
+                price: i.price,
+                quantity: i.quantity,
+              })),
+            ),
+          )
+        } else {
+          formData.append('tierPrice', [])
+        }
+
+        break
+
       case 'composition':
       case 'organic':
         if (value.length === 0) {
@@ -413,6 +517,10 @@ export async function editProduct(values, id, originalData, parentId) {
       case 'slug':
         formData.append(key, value)
         break
+      case 'parentId':
+        formData.append('parentId', value)
+        formData.append('variantType', value ? 'multiple' : 'single')
+        break
       default:
         console.log(key, value)
 
@@ -429,8 +537,6 @@ export async function editProduct(values, id, originalData, parentId) {
   formData.append('contents', JSON.stringify(st))
   formData.append('purchaseCount', 0)
 
-  formData.append('parentId', parentId)
-  formData.append('variantType', !parentId ? 'single' : 'nultiple')
   const options = {
     method: 'PATCH',
     body: formData,
@@ -475,6 +581,9 @@ export function transformProductToForm(data) {
     vediolink,
     manufacture,
     sizeChart,
+    cutomAttributes,
+    groupPrice,
+    tierPrice,
   } = data
   const { containervalue, medicinetype: temp, midleText } = medicinetype
   const {
@@ -485,6 +594,7 @@ export function transformProductToForm(data) {
     saleCommision,
     taxId,
     merchantId,
+    price_include_tax,
   } = productPricing
   const { _id } = taxId
   const { contents } = productExtraInfo
@@ -509,6 +619,7 @@ export function transformProductToForm(data) {
     listPrice,
     salePrice,
     startDate,
+    price_include_tax,
     endDate,
     taxId: _id,
     merchantId,
@@ -565,6 +676,16 @@ export function transformProductToForm(data) {
             value: i.value._id,
           }))
         : [],
+    cutomAttributes:
+      cutomAttributes && cutomAttributes.length && attributes.length > 0 && attributes.length > 0
+        ? cutomAttributes.map((i) => ({
+            attribute: i.attribute._id,
+            value: i.values,
+            inputType: i.inputType,
+          }))
+        : [],
+    groupPrice,
+    tierPrice,
   }
 }
 

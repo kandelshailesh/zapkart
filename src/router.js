@@ -6,7 +6,7 @@ import { ConnectedRouter } from 'connected-react-router'
 import Loader from 'components/LayoutComponents/Loader'
 import IndexLayout from 'layouts'
 import NotFoundPage from 'pages/404'
-import { ATTRIBUTES_PATH, LINKS, ROLES } from '_constants'
+import { PATH_CUSTOM_ATTRIBUTES, LINKS, ROLES } from '_constants'
 import { connect } from 'react-redux'
 import PrivateRoute from './PrivateRoute'
 
@@ -140,17 +140,17 @@ const routes = [
   },
   // /catalog/customattributes
   {
-    path: ATTRIBUTES_PATH.list,
+    path: PATH_CUSTOM_ATTRIBUTES.list,
     component: loadable(() => import('pages/catalog/customAttributes')),
     exact: true,
   },
   {
-    path: ATTRIBUTES_PATH.edit,
+    path: `${PATH_CUSTOM_ATTRIBUTES.edit}/:id`,
     component: loadable(() => import('pages/catalog/customAttributes/add-edit')),
     exact: true,
   },
   {
-    path: ATTRIBUTES_PATH.add,
+    path: PATH_CUSTOM_ATTRIBUTES.add,
     component: loadable(() => import('pages/catalog/customAttributes/add-edit')),
     exact: true,
   },
@@ -318,6 +318,11 @@ const routes = [
   {
     path: '/order-management/orders',
     component: loadable(() => import('pages/orders-new')),
+    exact: true,
+  },
+  {
+    path: '/order-management/orders/add-new',
+    component: loadable(() => import('pages/orders-new/create-new')),
     exact: true,
   },
   {

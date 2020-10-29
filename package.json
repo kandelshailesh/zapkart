@@ -20,7 +20,6 @@
   "proxy": "http://zapkartbackend.riolabz.com/",
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,scss,less}": [
-      "prettier --write",
       "git add"
     ],
     "src/**/*.{js,jsx}": [

@@ -6,6 +6,8 @@ import useFetching from 'hooks/useFetching'
 import { CATALOG_API_URL } from '_constants'
 import { getFormattedDate } from 'utils'
 import Table from 'components/Table'
+import AddNew from 'components/CustomComponents/AddNew'
+import { connect } from 'react-redux'
 
 const { TabPane } = Tabs
 
@@ -22,8 +24,10 @@ const orderBadges = {
   completed: 'badge-success',
 }
 
-const OrdersList = () => {
-  const [{ response, loading }] = useFetching(CATALOG_API_URL.getAllOrders)
+const OrdersList = ({ user }) => {
+  const [{ response, loading }] = useFetching(
+    user.userTypeId === 1 ? CATALOG_API_URL.getAllOrders : CATALOG_API_URL.getMerchantsOrder,
+  )
 
   const columns = [
     // order id - id
@@ -92,10 +96,10 @@ const OrdersList = () => {
       render: (text, record) => (
         <>
           <Link to={`/order-management/orders/order/${record.id}`}>
-            <Button icon="checkmark2" type='primary' className="mr-1" size="small" />
+            <Button icon="checkmark2" type="primary" className="mr-1" size="small" />
           </Link>
           <Link to={`/order-management/orders/order/${record.id}`}>
-            <Button icon="cross" type='danger' className="mr-1" size="small" />
+            <Button icon="cross" type="danger" className="mr-1" size="small" />
           </Link>
         </>
       ),
@@ -120,6 +124,9 @@ const OrdersList = () => {
         <div className="card-header">
           <div className="utils__title">
             <strong>Orders List</strong>
+            {user && user.userTypeId === 1 && (
+              <AddNew add link="/order-management/orders/add-new" />
+            )}
           </div>
         </div>
         <div className="card-body">
@@ -161,4 +168,4 @@ const OrdersList = () => {
   )
 }
 
-export default OrdersList
+export default connect(({ user }) => ({ user }))(OrdersList)

@@ -10,7 +10,7 @@ import usePrevious from 'hooks/usePrevious'
 import MainFormTabs from './tabs'
 import '../style.scss'
 
-const FormIndex = props => {
+const FormIndex = (props) => {
   const { match } = props
   const { params } = match
   const { id } = params
@@ -34,7 +34,7 @@ const FormIndex = props => {
   const renderForm = () => (
     <Query url={`${CATALOG_API_URL.getProducts}/${id}`} loader={loader}>
       {({ data }) => {
-        if (data._id === id) {
+        if (data.slug === id || data._id === id) {
           setProductName(data.name)
           console.log('returning correct data')
           return <MainFormTabs data={data} />

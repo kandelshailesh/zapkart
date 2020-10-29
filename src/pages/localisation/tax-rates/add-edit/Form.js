@@ -65,7 +65,7 @@ const ZoneEditForm = ({ initialValues, onSubmit }) => {
     },
     {
       type: (
-        <Select mode="multiple" placeholder="Select zone">
+        <Select mode="default" placeholder="Select zone">
           {geoZone?.data?.map((i) => (
             <Select.Option key={i._id} value={i._id}>
               {i.name}

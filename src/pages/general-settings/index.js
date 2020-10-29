@@ -45,6 +45,11 @@ const GeneralSettings = () => {
       label: 'Project Label',
     },
     {
+      type: <InputNumber type="number" min={0} />,
+      key: 'shippingAmount',
+      label: 'shipping Amount',
+    },
+    {
       type: <InputNumber type="number" min={1000} />,
       key: 'freeShippingAbove',
       label: 'Free shipping above',

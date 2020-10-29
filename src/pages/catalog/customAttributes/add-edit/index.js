@@ -1,12 +1,10 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { STRINGS, CATALOG_API_URL } from '_constants'
+import { STRINGS, API_CUSTOM_ATTRIBUTES } from '_constants'
 import { Skeleton, notification } from 'antd'
 import Query from 'components/Query'
 import { editData } from 'services'
 import Form from './Form'
-
-const URL = CATALOG_API_URL.country
 
 const CountryEditFormIndex = (props) => {
   const { match, history } = props
@@ -15,29 +13,17 @@ const CountryEditFormIndex = (props) => {
 
   const onAddNew = (values) => {
     console.log('check', values)
-    // const url = `${URL}/create`
-
-    // const dt = {}
-    // Object.keys(values).forEach((key) => {
-    //   if (key?.length > 0) {
-    //     if (key === 'country') {
-    //       dt.country = values[`${key}`]
-    //     } else if (key === 'status') {
-    //       dt.status = values[`${key}`]
-    //     }
-    //   }
-    // })
-
-    // submitData(url, dt, 'POST')
+    const url = API_CUSTOM_ATTRIBUTES.create
+    submitData(url, values, 'POST')
   }
 
   const onEdit = (values) => {
-    const url = `${URL}/${id}`
+    const url = `${API_CUSTOM_ATTRIBUTES.edit}/${id}`
     submitData(url, values)
   }
 
   const submitData = async (url, values, method = 'PATCH') => {
-    const res = await editData(url, values, 'json', method)
+    const res = await editData(url, values, 'formdata', method)
     if (res?.success) {
       notification.success({
         message: STRINGS.Success,
@@ -52,18 +38,18 @@ const CountryEditFormIndex = (props) => {
       })
   }
 
-  let form = <Form onSubmit={onAddNew} />
+  let form = <Form handleSubmit={onAddNew} />
   if (id) {
     form = (
-      <Query url={`${URL}/${id}`} loader={<Skeleton active />}>
+      <Query url={`${API_CUSTOM_ATTRIBUTES.edit}/${id}`} loader={<Skeleton active />}>
         {(res) => {
-          if (res?.data) return <Form initialValues={res.data} onSubmit={onEdit} />
+          if (res?.data) return <Form initialValues={res.data} handleSubmit={onEdit} />
           return <div>No data!</div>
         }}
       </Query>
     )
   }
-  const title = id ? 'Edit Country' : 'Add Country'
+  const title = id ? 'Edit Custom Attributes' : 'Add Custom Attributes'
   return (
     <div>
       <Helmet title={title} />

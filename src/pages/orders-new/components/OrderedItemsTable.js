@@ -122,7 +122,7 @@ class EditableTable extends React.Component {
               <EditableCell
                 type="number"
                 value={text}
-                onChange={this.onCellChange(record.id, 'quantity')}
+                onChange={()=>this.onCellChange(record.id, 'quantity')}
                 min={record.minOrderQty || 0}
                 max={record.maxOrderQty || undefined}
               />

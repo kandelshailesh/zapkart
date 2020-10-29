@@ -7,10 +7,9 @@ import Menu from 'components/Menu'
 import AddNew from 'components/CustomComponents/AddNew'
 import useFetching from 'hooks/useFetching'
 import { editData, deleteData } from 'services'
-import { ATTRIBUTES_PATH, CATALOG_API_URL } from '_constants'
+import { API_CUSTOM_ATTRIBUTES, PATH_CUSTOM_ATTRIBUTES } from '_constants'
 import { reducer, initialState } from './reducer'
 
-const URL = CATALOG_API_URL.country
 
 const menuItems = [
   {
@@ -30,12 +29,12 @@ const Countries = () => {
 
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const [{ response, loading, error }] = useFetching(`${URL}`)
+  const [{ response, loading, error }] = useFetching(`${API_CUSTOM_ATTRIBUTES.list}`)
 
   const handleMenuClick = async (e) => {
     if (state.statusClickedId) {
       const res = await editData(
-        `${URL}/${state.statusClickedId}`,
+        `${API_CUSTOM_ATTRIBUTES.edit}/${state.statusClickedId}`,
         {
           status: e.key,
         },
@@ -86,7 +85,7 @@ const Countries = () => {
 
   const handleDelete = (id) => {
     return async () => {
-      const isDeleted = await deleteData(`${URL}/${id}`)
+      const isDeleted = await deleteData(`${API_CUSTOM_ATTRIBUTES.edit}/${id}`)
       if (isDeleted) {
         dispatch({
           type: 'deleteItem',
@@ -110,18 +109,12 @@ const Countries = () => {
 
   const columns = [
     {
-      title: '#',
-      dataIndex: '_id',
-      key: '_id',
-      render: (text, record, index) => `#${index + 1}`,
-    },
-    {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
+      title: 'Label',
+      dataIndex: 'label',
+      key: 'label',
       search: true,
       render: (text, record) => {
-        return `${record.country}`
+        return `${record.label}`
       },
     },
     {
@@ -164,7 +157,7 @@ const Countries = () => {
       key: 'action',
       render: (record) => (
         <span>
-          <Link to={`/localisation/countries/edit/${record._id}`}>
+          <Link to={`${PATH_CUSTOM_ATTRIBUTES.edit}/${record._id}`}>
             <Button icon="edit" className="mr-1" size="small" />
           </Link>
           {state.data.length >= 1 ? (
@@ -183,8 +176,8 @@ const Countries = () => {
       <div className="card">
         <div className="card-header">
           <div className="utils__title">
-            <strong>Attributes List</strong>
-            <AddNew add attribute="Attributes" link={ATTRIBUTES_PATH.add} />
+            <strong>Custom Attributes List</strong>
+            <AddNew add attribute="Attributes" link={PATH_CUSTOM_ATTRIBUTES.add} />
           </div>
         </div>
         <div className="card-body">

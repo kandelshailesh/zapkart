@@ -45,8 +45,8 @@ const EditCreateGeozone = ({ initialValues, HandleOnSubmit }) => {
         <Select mode="multiple" placeholder="Select State first">
           {selectSate?.data?.map((indx) => (
             // eslint-disable-next-line no-underscore-dangle
-            <Select.Option key={indx._id} value={indx._id}>
-              {`${indx.state}`}
+            <Select.Option key={indx} value={indx}>
+              {`${indx}`}
             </Select.Option>
           ))}
         </Select>

@@ -19,6 +19,9 @@ import VariantFormTab from './VariantFormTab'
 import Pricing from '../forms/Pricing'
 import Attributes from '../forms/Attributes'
 import ExtraInfo from '../forms/ExtraInfo'
+import CustomAttributes from '../forms/CustomAttributes'
+import GroupPricing from '../forms/GroupPricing'
+import ProductTier from '../forms/ProductTier'
 
 export const FormContext = React.createContext({})
 const FormProvider = FormContext.Provider
@@ -91,6 +94,14 @@ const FormIndex = (props) => {
         value: '',
       },
     ],
+    cutomAttributes: [
+      {
+        attribute: '',
+        value: '',
+      },
+    ],
+    groupPrice: [{ customerGroup: '', price: '' }],
+    tierPrice: [{ customerGroup: '', quantity: '', price: '' }],
     featured: false,
     status: 'hold',
     priorityOrder: 0,
@@ -295,7 +306,7 @@ const FormIndex = (props) => {
           isSubmitting,
         }}
       >
-        {parseInt(activeKey, 10) < 4 && (
+        {parseInt(activeKey, 10) < 5 && (
           <div className="left-spaced">
             <Button onClick={onSubmit} disabled={isSubmitting} type="primary">
               Submit
@@ -345,9 +356,22 @@ const FormIndex = (props) => {
             key={3}
           >
             <Pricing name="pricing" hideSubmit />
+            <GroupPricing name="Group Pricing" />
+            <ProductTier name="Product Tier" hideSubmit />
             {((values.linktoBase && values.linktoBase === 'false') || !values.linktoBase) && (
               <Attributes name="attributes" hideSubmit />
             )}
+          </TabPane>
+          <TabPane
+            tab={
+              <span>
+                {/* {(errorTabs.pricing || errorTabs.attributes) && <span style={redStyle}>*</span>}{' '} */}
+                Custom Attributes
+              </span>
+            }
+            key={4}
+          >
+            <CustomAttributes name="Custom Attributes" hideSubmit />
           </TabPane>
           {/* {data && (
         <TabPane

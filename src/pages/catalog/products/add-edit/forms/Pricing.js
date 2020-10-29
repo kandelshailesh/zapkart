@@ -4,7 +4,8 @@ import {
   Button,
   Form,
   Input,
-  InputNumber, // DatePicker
+  InputNumber,
+  Radio, // DatePicker
   Select,
 } from 'antd'
 
@@ -204,6 +205,22 @@ const DPricing = ({ data, hideSubmit, hasTitle, formControls }) => {
       key: 'taxId',
       label: 'Tax Class',
       error: errors.taxId,
+    },
+    {
+      type: (
+        <Radio.Group
+          name="price_include_tax"
+          defaultValue={values.price_include_tax}
+          buttonStyle="solid"
+        >
+          {/* eslint-disable-next-line react/jsx-boolean-value */}
+          <Radio.Button value={true}>Yes</Radio.Button>
+          <Radio.Button value={false}>No</Radio.Button>
+        </Radio.Group>
+      ),
+      key: 'price_include_tax',
+      label: 'Price Include Tax',
+      error: errors.price_include_tax,
     },
   ]
 

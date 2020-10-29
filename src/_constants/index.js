@@ -17,10 +17,15 @@ export const ROLES = {
   enduser: 'enduser',
 }
 
-export const ATTRIBUTES_PATH = {
+export const PATH_CUSTOM_ATTRIBUTES = {
   list: '/catalog/customattributes/list',
   add: '/catalog/customattributes/create',
-  edit: '/catalog/customattributes/attributes/:id',
+  edit: '/catalog/customattributes/attributes',
+}
+export const API_CUSTOM_ATTRIBUTES = {
+  edit: '/api/catalog/v1/customattributes',
+  list: '/api/catalog/v1/customattributes',
+  create: '/api/catalog/v1/customattributes/create',
 }
 export const LINKS = {
   addAttribute: '/catalog/attributes/add-attribute-group',
@@ -65,6 +70,11 @@ export const LINKS = {
 
 export const CATALOG_API_URL = {
   // attributeUrl: 'http://localhost:3002/api/attributesGroup',
+  getAllUser: '/api/backend/v1/users/all',
+  orderbyadmin: '/api/backend/v1/order/admin/create',
+  prescriptionbyadmin: '/api/backend/v1/admin/updatePrescriptions',
+  getprescriptionbyadmin: '/api/backend/v1/users/getPrescriptions',
+  addressCreate: '/api/backend/v1/users/address/create',
   getCategories: '/api/catalog/v1/category',
   getInformations: '/api/catalog/v1/informations',
   getOrganics: '/api/catalog/v1/organic',
@@ -83,10 +93,14 @@ export const CATALOG_API_URL = {
   editProductUserReview: '/api/backend/v1/reviews/edit',
   deleteReview: '/api/backend/v1/reviews/delete',
   users: '/api/backend/v1/users',
+
   getUserOrders: '/api/backend/v1/order/user',
+
   getOrder: '/api/backend/v1/order',
   getOrderStats: '/api/backend/v1/order/stats',
   getAllOrders: '/api/backend/v1/order/all',
+  getMerchantsOrder: '/api/backend/v1/merchant_orderItems',
+
   getWishlist: '/api/backend/v1/users/wishlist',
   editOrder: '/api/backend/v1/order/update',
   editOrderItem: '/api/backend/v1/order/orderItem',
@@ -141,6 +155,7 @@ export const CATALOG_API_URL = {
   widgetTabCreate: '/api/catalog/v1/widgetTab/create',
 
   updateProductPriceByAdmin: '/api/catalog/v1/productprice/admin',
+  getAddress: '/api/backend/v1/users/address',
 }
 
 export const STATE_LIST_API = {
