@@ -1,0 +1,369 @@
+{
+    "data": [
+        {
+            "vendor_id": 1,
+            "name": "Jamie Murray",
+            "email": "jamie@gmail.com",
+            "createdAt": "2014-01-01T23:28:56.782Z",
+            "status": "New",
+            "orders": [
+                {
+                    "status": "Processing",
+                    "amount": 300,
+                    "user": {
+                        "name": "Damon",
+                        "profile_img": "resources/images/avatars/temp.jpg",
+                        "email": "abx@gmail.com"
+                    },
+                    "id": 2425,
+                    "products": [
+                        {
+                            "product_id": 1232
+                        },
+                        {
+                            "product_id": 1233
+                        }
+                    ],
+                    "payment": {
+                        "status": "Completed"
+                    },
+                    "created_at": "2019-07-24T09:19:38.678Z"
+                },
+                {
+                    "status": "Processing",
+                    "amount": 300,
+                    "user": {
+                        "name": "Damon",
+                        "profile_img": "resources/images/avatars/temp.jpg",
+                        "email": "abx@gmail.com"
+                    },
+                    "id": 2426,
+                    "products": [
+                        {
+                            "product_id": 1232
+                        },
+                        {
+                            "product_id": 1233
+                        }
+                    ],
+                    "payment": {
+                        "status": "Completed"
+                    },
+                    "created_at": "2019-07-24T09:19:38.678Z"
+                },
+                {
+                    "status": "Processing",
+                    "amount": 300,
+                    "user": {
+                        "name": "Damon",
+                        "profile_img": "resources/images/avatars/temp.jpg",
+                        "email": "abx@gmail.com"
+                    },
+                    "id": 2427,
+                    "products": [
+                        {
+                            "product_id": 1232
+                        },
+                        {
+                            "product_id": 1233
+                        }
+                    ],
+                    "payment": {
+                        "status": "Completed"
+                    },
+                    "created_at": "2019-07-24T09:19:38.678Z"
+                },
+                {
+                    "status": "Processing",
+                    "amount": 300,
+                    "user": {
+                        "name": "Damon",
+                        "profile_img": "resources/images/avatars/temp.jpg",
+                        "email": "abx@gmail.com"
+                    },
+                    "id": 2428,
+                    "products": [
+                        {
+                            "product_id": 1232
+                        },
+                        {
+                            "product_id": 1233
+                        }
+                    ],
+                    "payment": {
+                        "status": "Completed"
+                    },
+                    "created_at": "2019-07-24T09:19:38.678Z"
+                },
+                {
+                    "status": "Processing",
+                    "amount": 300,
+                    "user": {
+                        "name": "Damon",
+                        "profile_img": "resources/images/avatars/temp.jpg",
+                        "email": "abx@gmail.com"
+                    },
+                    "id": 2429,
+                    "products": [
+                        {
+                            "product_id": 1232
+                        },
+                        {
+                            "product_id": 1233
+                        }
+                    ],
+                    "payment": {
+                        "status": "Completed"
+                    },
+                    "created_at": "2019-07-24T09:19:38.678Z"
+                },
+                {
+                    "status": "Processing",
+                    "amount": 300,
+                    "user": {
+                        "name": "Damon",
+                        "profile_img": "resources/images/avatars/temp.jpg",
+                        "email": "abx@gmail.com"
+                    },
+                    "id": 2430,
+                    "products": [
+                        {
+                            "product_id": 1232
+                        },
+                        {
+                            "product_id": 1233
+                        }
+                    ],
+                    "payment": {
+                        "status": "Completed"
+                    },
+                    "created_at": "2019-07-24T09:19:38.678Z"
+                }
+            ],
+            "commission_percent": "15%",
+            "GSTIN_no": "123AB7",
+            "TAN": "111AB",
+            "signature": "aaa",
+            "payment": {
+                "pending_amount": 1000,
+                "total_amount": 2000,
+                "total_payment_received": 1000
+            },
+            "address": {
+                "address": "Lorem ipsum dolor sit amet, stet adversarium et nam",
+                "pincode": "567567",
+                "city": "Kochi",
+                "state": "Kerala"
+            },
+            "account_details": {
+                "account_no": "AB123",
+                "account_name": "JM",
+                "ifsc_no": "1232"
+            }
+        },
+        {
+            "vendor_id": 2,
+            "name": "Jamie Murray",
+            "email": "jamie@gmail.com",
+            "createdAt": "2014-01-01T23:28:55.782Z",
+            "status": "New",
+            "orders": [
+                {
+                    "status": "Processing",
+                    "amount": 300,
+                    "user": {
+                        "name": "Damon",
+                        "profile_img": "resources/images/avatars/temp.jpg",
+                        "email": "abx@gmail.com"
+                    },
+                    "id": 2425,
+                    "products": [
+                        {
+                            "product_id": 1232
+                        },
+                        {
+                            "product_id": 1233
+                        }
+                    ],
+                    "payment": {
+                        "status": "Completed"
+                    },
+                    "created_at": "2019-07-24T09:19:38.678Z"
+                }
+            ],
+            "commission_percent": "15%",
+            "GSTIN_no": "123AB7",
+            "TAN": "111AB",
+            "signature": "aaa",
+            "payment": {
+                "pending_amount": 1000,
+                "total_amount": 2000,
+                "total_payment_received": 1000
+            },
+            "address": {
+                "address": "Lorem ipsum dolor sit amet, stet adversarium et nam",
+                "pincode": "567567",
+                "city": "Kochi",
+                "state": "Kerala"
+            },
+            "account_details": {
+                "account_no": "AB123",
+                "account_name": "JM",
+                "ifsc_no": "1232"
+            }
+        },
+        {
+            "vendor_id": 3,
+            "name": "James Murray",
+            "email": "james@gmail.com",
+            "createdAt": "2014-01-01T23:28:55.782Z",
+            "status": "Pending",
+            "orders": [
+                {
+                    "status": "Processing",
+                    "amount": 300,
+                    "user": {
+                        "name": "Damon",
+                        "profile_img": "resources/images/avatars/temp.jpg",
+                        "email": "abx@gmail.com"
+                    },
+                    "id": 2425,
+                    "products": [
+                        {
+                            "product_id": 1232
+                        },
+                        {
+                            "product_id": 1233
+                        }
+                    ],
+                    "payment": {
+                        "status": "Completed"
+                    },
+                    "created_at": "2019-07-24T09:19:38.678Z"
+                }
+            ],
+            "commission_percent": "15%",
+            "GSTIN_no": "123AB7",
+            "TAN": "111AB",
+            "signature": "aaa",
+            "payment": {
+                "pending_amount": 1000,
+                "total_amount": 2000,
+                "total_payment_received": 1000
+            },
+            "address": {
+                "address": "Lorem ipsum dolor sit amet, stet adversarium et nam",
+                "pincode": "567567",
+                "city": "Kochi",
+                "state": "Kerala"
+            },
+            "account_details": {
+                "account_no": "AB123",
+                "account_name": "JM",
+                "ifsc_no": "1232"
+            }
+        },
+        {
+            "vendor_id": 4,
+            "name": "James Galloway",
+            "email": "jamesg@gmail.com",
+            "createdAt": "2014-01-01T23:28:55.782Z",
+            "status": "Active",
+            "orders": [
+                {
+                    "status": "Processing",
+                    "amount": 300,
+                    "user": {
+                        "name": "Damon",
+                        "profile_img": "resources/images/avatars/temp.jpg",
+                        "email": "abx@gmail.com"
+                    },
+                    "id": 2425,
+                    "products": [
+                        {
+                            "product_id": 1232
+                        },
+                        {
+                            "product_id": 1233
+                        }
+                    ],
+                    "payment": {
+                        "status": "Completed"
+                    },
+                    "created_at": "2019-07-24T09:19:38.678Z"
+                }
+            ],
+            "commission_percent": "15%",
+            "GSTIN_no": "123AB7",
+            "TAN": "111AB",
+            "signature": "aaa",
+            "payment": {
+                "pending_amount": 1000,
+                "total_amount": 2000,
+                "total_payment_received": 1000
+            },
+            "address": {
+                "address": "Lorem ipsum dolor sit amet, stet adversarium et nam",
+                "pincode": "567567",
+                "city": "Kochi",
+                "state": "Kerala"
+            },
+            "account_details": {
+                "account_no": "AB123",
+                "account_name": "JM",
+                "ifsc_no": "1232"
+            }
+        },
+        {
+            "vendor_id": 5,
+            "name": "Rachel Galloway",
+            "email": "rachelg@gmail.com",
+            "createdAt": "2014-01-01T23:28:55.782Z",
+            "status": "Active",
+            "orders": [
+                {
+                    "status": "Processing",
+                    "amount": 300,
+                    "user": {
+                        "name": "Damon",
+                        "profile_img": "resources/images/avatars/temp.jpg",
+                        "email": "abx@gmail.com"
+                    },
+                    "id": 2425,
+                    "products": [
+                        {
+                            "product_id": 1232
+                        },
+                        {
+                            "product_id": 1233
+                        }
+                    ],
+                    "payment": {
+                        "status": "Completed"
+                    },
+                    "created_at": "2019-07-24T09:19:38.678Z"
+                }
+            ],
+            "commission_percent": "15%",
+            "GSTIN_no": "123AB7",
+            "TAN": "111AB",
+            "signature": "aaa",
+            "payment": {
+                "pending_amount": 1000,
+                "total_amount": 2000,
+                "total_payment_received": 1000
+            },
+            "address": {
+                "address": "Lorem ipsum dolor sit amet, stet adversarium et nam",
+                "pincode": "567567",
+                "city": "Kochi",
+                "state": "Kerala"
+            },
+            "account_details": {
+                "account_no": "AB123",
+                "account_name": "JM",
+                "ifsc_no": "1232"
+            }
+        }
+    ]
+}

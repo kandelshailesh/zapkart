@@ -1,0 +1,164 @@
+{
+    "data": [
+        {
+            "key": "1",
+            "id": "100",
+            "attribute_group": "product_form",
+            "included_in_filter": true,
+            "name": "Product Form",
+            "values": [
+                {
+                    "id": "1",
+                    "name": "Capsule",
+                    "attribute_value": "capsule"
+                },
+                {
+                    "id": "2",
+                    "name": "Cream",
+                    "attribute_value": "cream"
+                },
+                {
+                    "id": "3",
+                    "name": "Pill",
+                    "attribute_value": "pill"
+                }
+            ]
+        },
+        {
+            "key": "2",
+            "id": "101",
+            "attribute_group": "unit_of_qty",
+            "included_in_filter": true,
+            "name": "Unit of quantity",
+            "values": [
+                {
+                    "id": "1",
+                    "name": "kg",
+                    "attribute_value": "kg"
+                },
+                {
+                    "id": "2",
+                    "name": "gm",
+                    "attribute_value": "gm"
+                },
+                {
+                    "id": "3",
+                    "name": "ml",
+                    "attribute_value": "ml"
+                }
+            ]
+        },
+        {
+            "key": "3",
+            "id": "102",
+            "attribute_group": "qty_value",
+            "included_in_filter": true,
+            "name": "Quantity",
+            "values": [
+                
+            ]
+        },
+        {
+            "key": "4",
+            "id": "103",
+            "attribute_group": "product_container",
+            "included_in_filter": true,
+            "name": "Product Container",
+            "values": [
+                {
+                    "id": "1",
+                    "name": "Box",
+                    "attribute_value": "box"
+                },
+                {
+                    "id": "2",
+                    "name": "Jar",
+                    "attribute_value": "jar"
+                },
+                {
+                    "id": "3",
+                    "name": "Strip",
+                    "attribute_value": "pill"
+                }
+            ]
+        },
+        {
+            "key": "5",
+            "id": "104",
+            "attribute_group": "age_group",
+            "included_in_filter": true,
+            "name": "Age group",
+            "values": [
+                {
+                    "id": "1",
+                    "name": "All",
+                    "attribute_value": "all"
+                },
+                {
+                    "id": "2",
+                    "name": "Child",
+                    "attribute_value": "child"
+                },
+                {
+                    "id": "3",
+                    "name": "Elderly",
+                    "attribute_value": "elderly"
+                },
+                {
+                    "id": "3",
+                    "name": "Adult",
+                    "attribute_value": "adult"
+                }
+            ]
+        },
+        {
+            "key": "6",
+            "id": "105",
+            "attribute_group": "diseases",
+            "included_in_filter": true,
+            "name": "Diseases",
+            "values": [
+                {
+                    "id": "1",
+                    "name": "Parkinson's disease",
+                    "attribute_value": "parkinson's disease"
+                },
+                {
+                    "id": "2",
+                    "name": "Indigestion",
+                    "attribute_value": "indigestion"
+                },
+                {
+                    "id": "3",
+                    "name": "High Cholestrol",
+                    "attribute_value": "high_cholestrol"
+                },
+                {
+                    "id": "5",
+                    "name": "Schizophrenia",
+                    "attribute_value": "schizophrenia"
+                },
+                {
+                    "id": "6",
+                    "name": "Schizophrenia",
+                    "attribute_value": "schizophrenia"
+                },
+                {
+                    "id": "7",
+                    "name": "Schizophrenia",
+                    "attribute_value": "schizophrenia"
+                },
+                {
+                    "id": "8",
+                    "name": "Schizophrenia",
+                    "attribute_value": "schizophrenia"
+                },
+                {
+                    "id": "9",
+                    "name": "Schizophrenia",
+                    "attribute_value": "schizophrenia"
+                }
+            ]
+        }
+    ]
+}

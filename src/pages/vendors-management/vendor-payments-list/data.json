@@ -1,0 +1,84 @@
+{
+    "data": [
+        {
+            "id":1,
+            "vendor": {
+                "id": 1,
+                "name":"MedMart",
+                "commission_percent":"15"
+            },
+            "order": {
+                "id": 2425,
+                "date":"2014-01-01T23:28:55.782Z",
+                "status":"Processing",
+                "products": [
+                    {
+                        "id": 1232
+                    }
+                ]
+            },
+            "amount": 120,
+            "owing": 55
+        },
+        {
+            "id":2,
+            "vendor": {
+                "id": 2,
+                "name":"Gazali",
+                "commission_percent":"15"
+            },
+            "order": {
+                "id": 2426,
+                "date":"2014-01-01T23:28:55.782Z",
+                "status":"Processing",
+                "products": [
+                    {
+                        "id": 1232
+                    }
+                ]
+            },
+            "amount": 120,
+            "owing": 55
+        },
+        {
+            "id":3,
+            "vendor": {
+                "id": 3,
+                "name":"Buteim",
+                "commission_percent":"15"
+            },
+            "order": {
+                "id": 2427,
+                "date":"2014-01-01T23:28:55.782Z",
+                "status":"Processing",
+                "products": [
+                    {
+                        "id": 1232
+                    }
+                ]
+            },
+            "amount": 800,
+            "owing": 800
+        },
+        {
+            "id":4,
+            "vendor": {
+                "id": 3,
+                "name":"Buteim",
+                "commission_percent":"15"
+            },
+            "order": {
+                "id": 2428,
+                "date":"2014-01-01T23:28:55.782Z",
+                "status":"Processing",
+                "products": [
+                    {
+                        "id": 1232
+                    }
+                ]
+            },
+            "amount": 800,
+            "owing": 0
+        }
+    ]
+}

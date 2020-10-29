@@ -1,0 +1,56 @@
+@import 'assets/styles/mixins.scss';
+
+.thumbnail {
+  display: inline-block;
+  width: 4.28rem;
+  height: 4.28rem;
+  border: 1px solid #e4e9f0;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  background: #fff;
+  text-align: center;
+
+  img {
+    max-width: 100%;
+    min-height: 100%;
+    max-height: 100%;
+    vertical-align: middle;
+  }
+}
+
+.formbody {
+  border: 1px solid #050607;
+  margin: auto;
+}
+
+.ant-layout {
+  overflow-x: visible;
+}
+
+.card-body {
+  overflow-x: visible !important;
+  position: relative;
+}
+
+.left-spaced {
+  z-index: 1;
+  position: fixed;
+  top: 15em;
+  right: 2em;
+}
+
+@media (max-width: 767px) {
+  .ant-layout {
+    overflow-x: hidden;
+  }
+  .left-spaced {
+    position: inherit;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    top: 0;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

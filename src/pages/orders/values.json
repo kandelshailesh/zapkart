@@ -1,0 +1,19 @@
+{
+    "order_status":[
+        
+        {"key": 1, "value": "Cancelled"},
+        {"key": 2, "value": "Cancelled reversal"},
+        {"key": 3, "value": "Chargeback"},
+        {"key": 4, "value": "Complete"},
+        {"key": 5, "value": "Denied"},
+        {"key": 6, "value": "Expired"},
+        {"key": 7, "value": "Failed"},
+        {"key": 8, "value": "Pending"},
+        {"key": 9, "value": "Processing"},
+        {"key": 10, "value": "Processed"},
+        {"key": 11, "value": "Refunded"},
+        {"key": 12, "value": "Shipped"},
+        {"key": 13, "value": "Reversed"},
+        {"key": 14, "value": "Voided"}
+    ]
+}

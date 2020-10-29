@@ -1,0 +1,10 @@
+const actions = {
+  SET_STATE: 'user/SET_STATE',
+  LOGIN: 'user/LOGIN',
+  LOGIN_SOCIAL: 'user/LOGIN_SOCIAL',
+  LOAD_CURRENT_ACCOUNT: 'user/LOAD_CURRENT_ACCOUNT',
+  LOAD_CURRENT_ACCOUNT_JWT: 'user/LOAD_CURRENT_ACCOUNT_JWT',
+  LOGOUT: 'user/LOGOUT',
+}
+
+export default actions
