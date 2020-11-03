@@ -19,6 +19,9 @@ const useFormValidation = (
   const [errors, setErrors] = useState({})
   const [touched, setTouched] = useState({})
   const [isSubmitting, setSubmitting] = useState(false)
+
+  console.log("errors",errors,callback)
+
   useEffect(() => {
     // console.log('in useEffect errors', Object.keys(errors), isSubmitting)
     if (Object.keys(errors).length === 0 && isSubmitting) {

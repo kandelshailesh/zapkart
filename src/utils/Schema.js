@@ -129,6 +129,30 @@ export const departmentsSchema = Yup.object().shape({
   status: Yup.string().required('Required'),
   appointmentStatus: Yup.boolean().required('Required'),
 })
+
+export const deliveryAdminLocationSchema = Yup.object().shape({
+  location_name: Yup.string().required('Required'),
+  type: Yup.string().required('Required'),
+  status: Yup.string().required('Required'),
+  // zipcode: Yup.string().required('Required'),
+  district: Yup.string().nullable(),
+  // country: Yup.string().nullable().required('Required'),
+  state: Yup.string().nullable(),
+  pincodes: Yup.string().nullable().required('Required'),
+  merchantId:Yup.string().required('Required'),
+})
+
+export const deliveryMerchantLocationSchema = Yup.object().shape({
+  location_name: Yup.string().required('Required'),
+  type: Yup.string().required('Required'),
+  status: Yup.string().required('Required'),
+  // zipcode: Yup.string().required('Required'),
+  district: Yup.string().nullable(),
+  // country: Yup.string().nullable().required('Required'),
+  state: Yup.string().nullable(),
+  pincodes: Yup.string().nullable().required('Required'),
+})
+
 export const editUserSchema = Yup.object().shape({
   firstName: Yup.string().required('Required'),
   lastName: Yup.string().nullable().required('Required'),
