@@ -193,9 +193,7 @@ class List extends React.Component {
         <div className="card">
           <div className="card-header">
             <div className="utils__title">
-              {user.userTypeId === 1 && (
-                <AdminDetails fetchAdminDetails={this.fetchAdminDetails} />
-              )}
+              {user.userTypeId === 1 && <AdminDetails fetchAdminDetails={this.fetchAdminDetails} />}
               <strong>Delivery Location List</strong>
               {/* {user.userTypeId === 1 && ( */}
               <AddNew

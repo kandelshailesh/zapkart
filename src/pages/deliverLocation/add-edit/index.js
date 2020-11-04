@@ -10,24 +10,30 @@ import { Skeleton } from 'antd'
 
 import Form from './Form'
 
-const FormIndex = props => {
+const FormIndex = (props) => {
   const { match } = props
   const { params } = match
-  const { id } = params
-
-  console.log("id",id)
+  let { id } = params
+  console.log('id', id)
+  let tit = 'Add Delivery Location'
   let form = <Form />
+  if (id === 'add-edit') {
+    console.log('id', id)
+    id = undefined
+    form = ''
+    tit = ''
+  }
   if (id) {
     form = (
       <Query url={`/api/catalog/v1/availabilitypincode/${id}`} loader={<Skeleton active />}>
-        {res => {
+        {(res) => {
           if (res.data) return <Form data={res.data} />
           return <div>No data!</div>
         }}
       </Query>
     )
   }
-  const title = id ? 'Edit Delivery Location' : 'Add Delivery Location'
+  const title = id ? 'Edit Delivery Location' : tit
   return (
     <div>
       <Helmet title={title} />

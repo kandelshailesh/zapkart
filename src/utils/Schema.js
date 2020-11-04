@@ -139,7 +139,7 @@ export const deliveryAdminLocationSchema = Yup.object().shape({
   // country: Yup.string().nullable().required('Required'),
   state: Yup.string().nullable(),
   pincodes: Yup.string().nullable().required('Required'),
-  merchantId:Yup.string().required('Required'),
+  merchantId: Yup.string().required('Required'),
 })
 
 export const deliveryMerchantLocationSchema = Yup.object().shape({
@@ -185,6 +185,7 @@ export const productGeneralSchema = Yup.object().shape({
   featured: Yup.boolean().required('Required'),
   name: Yup.string().required('Required'),
   sku: Yup.string().required('Required'),
+  pincode_services: Yup.array().required('Required'),
   category: Yup.array().required('Required'),
   brand: Yup.string(),
   returnable: Yup.boolean().required('Required'),

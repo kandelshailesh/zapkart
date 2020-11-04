@@ -28,7 +28,7 @@ const FormA = (props) => {
 
   const initialValues = {
     status: 'hold',
-    // type: 'single',
+    type: 'single',
   }
 
   const [pincode, setPincode] = useState([])
@@ -38,31 +38,6 @@ const FormA = (props) => {
   const [stat, setStats] = useState([])
   const [citie, setCitie] = useState([])
   const [zip, setZip] = useState([])
-  const [cityval, setCityval] = useState('')
-  const [stateval, setStateval] = useState('KERALA')
-  const [zipval, setZipVal] = useState('')
-
-  // const fetchPinCodes = async () => {
-  //   const url = '/api/catalog/v1/indianpincode'
-  //   const options = {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //   }
-  //   try {
-  //     const res = await callApi(url, options)
-  //     console.log('response get', res)
-  //     if (res.data) return { data: res.data }
-  //   } catch (error) {
-  //     console.log('error', error)
-  //     notification.error({
-  //       message: 'Error!',
-  //       description: error.message,
-  //     })
-  //   }
-  //   return null
-  // }
 
   const fetchSubmit = async () => {
     console.log('values', values)
@@ -137,24 +112,7 @@ const FormA = (props) => {
       console.log('state is ', stat)
     }
     fetchStat()
-  }, [stateval])
-
-  useEffect(() => {
-    console.log('MMM dd', values.state)
-    if (values.state && values.state !== '') {
-      setCitie([])
-      // setValues((prev) => ({ ...prev, cityId: null }))
-      fetchCity(values.state)
-    }
-  }, [values.state])
-
-  useEffect(() => {
-    console.log('pincode', values.district)
-    if (values.district && values.district !== '') {
-      setZip([])
-      fetchZip(values.district)
-    }
-  }, [values.district])
+  }, [])
 
   useEffect(() => {
     const fetchMerchants = async () => {
@@ -229,9 +187,12 @@ const FormA = (props) => {
           placeholder="Select State"
           optionFilterProp="children"
           onChange={(e) => {
-            console.log('stvl', stateval, e)
-            setStateval({ stateval: e })
+            console.log('stvl', e, values.district, values.pincodes)
+            // setStateval(e)
+            values.district = ''
+            values.pincodes = ''
             setValues((a) => ({ ...a, state: e }))
+            fetchCity(e)
           }}
           name="state"
           value={values.state}
@@ -241,19 +202,14 @@ const FormA = (props) => {
             option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
           }
         >
-          {console.log(stateval.stateval)}
-          {/* <Select.Option selected value={data.speciality._id}>{data.speciality.name}</Select.Option> */}
           {stat.map((i) => (
-            // <Select.Option key={i} value={i}>
-            //   {i}
-            // </Select.Option>
             <Option
               key={i}
               value={i}
-              onSelect={(e) => {
-                console.log('stvl', stateval, e)
-                setStateval({ stateval: e })
-              }}
+              // onSelect={(e) => {
+              //   console.log('stvl', stateval, e)
+              //   setStateval(e)
+              // }}
             >
               {i}
             </Option>
@@ -273,11 +229,13 @@ const FormA = (props) => {
           placeholder="Select District"
           optionFilterProp="children"
           onChange={(e) => {
-            setCityval({ cityval: e })
+            values.pincodes = ''
             setValues((a) => ({ ...a, district: e }))
+            values.pincodes = ''
+            fetchZip(e)
           }}
           name="district"
-          value={values.district || cityval.cityval}
+          value={values.district}
           filterOption={(input, option) =>
             option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
           }
@@ -301,10 +259,10 @@ const FormA = (props) => {
           placeholder="Select Pincode"
           optionFilterProp="children"
           onChange={(e) => {
-            setZipVal({ zipval: e })
+            // setZipVal(e)
             setValues((a) => ({ ...a, pincodes: e }))
           }}
-          value={values.pincodes || zipval.zipval}
+          value={values.pincodes}
           filterOption={(input, option) =>
             option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
           }
@@ -319,7 +277,7 @@ const FormA = (props) => {
       label: 'Pincodes',
       key: 'pincodes',
       error: errors.pincodes,
-      resetOnChange: 'city',
+      resetOnChange: 'district',
     },
     // {
     //   label: 'Merchant',
@@ -419,6 +377,7 @@ const FormA = (props) => {
     )
     formItems = [...filteredState.filter((item) => item.key !== 'pincodes'), ...options]
   }
+
   if (success) return <Redirect to="/deliverLocation" />
 
   return (
@@ -458,56 +417,3 @@ const FormA = (props) => {
 }
 
 export default connect(({ user }) => ({ user }))(FormA)
-
-//   /* <Form.List name="users">
-//               //   {(fields, { add, remove }) => {
-//               //     console.log(
-//               //       'fields',
-//               //       fields,
-//               //     )(
-//               //       <>
-//               //         {fields.map((field) => (
-//               //           <div
-//               //             key={field.key}
-//               //             style={{ display: 'flex', marginBottom: 8 }}
-//               //             align="baseline"
-//               //           >
-//               //             <Form.Item
-//               //               {...field}
-//               //               name={[field.name, 'first']}
-//               //               fieldKey={[field.fieldKey, 'first']}
-//               //               rules={[{ required: true, message: 'Missing first name' }]}
-//               //             >
-//               //               <Input placeholder="First Name" />
-//               //             </Form.Item>
-//               //             <Form.Item
-//               //               {...field}
-//               //               name={[field.name, 'last']}
-//               //               fieldKey={[field.fieldKey, 'last']}
-//               //               rules={[{ required: true, message: 'Missing last name' }]}
-//               //             >
-//               //               <Input placeholder="Last Name" />
-//               //             </Form.Item>
-//               //             <Tooltip title="Delete attribute">
-//               //               {' '}
-//               //               <Button
-//               //                 size="small"
-//               //                 shape="circle"
-//               //                 type="primary"
-//               //                 onClick={() => remove(field.name)}
-//               //               >
-//               //                 {' '}
-//               //                 <Icon type="minus" />
-//               //               </Button>
-//               //             </Tooltip>{' '}
-//               //           </div>
-//               //         ))}
-//               //         <Tooltip title="Add new attribute">
-//               //           <Button shape="circle" size="small" onClick={() => add()} type="primary">
-//               //             <Icon type="plus" />
-//               //           </Button>
-//               //         </Tooltip>
-//               //       </>,
-//               //     )
-//               //   }}*/
-// }

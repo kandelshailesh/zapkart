@@ -20,6 +20,7 @@ import {
   getSizeChart,
   getAllMerchnats,
 } from 'services'
+import { getAdminDeliveryLocation } from 'services/deliverLocation'
 import AddNew from 'components/CustomComponents/AddNew'
 import { getProducts } from 'services/products'
 import PropTypes from 'prop-types'
@@ -90,7 +91,7 @@ const AGeneral = ({ hideSubmit, hasTitle, formControls, isEdit, userType }) => {
       _id: 'vediolink_0',
     },
   ])
-
+  const [pincode, setPincode] = useState([])
   // const [medicineTypes, setMedicineTypes] = useState([])
 
   const formContext = useContext(FormContext)
@@ -192,7 +193,6 @@ const AGeneral = ({ hideSubmit, hasTitle, formControls, isEdit, userType }) => {
       const cData = await getAllMerchnats()
       if (cData) setMerchants(cData)
     }
-
     // setFileListImages(values.image)
     // const fetchMedicineTypes = async ()
     fetchSaltCompositions()
@@ -210,6 +210,15 @@ const AGeneral = ({ hideSubmit, hasTitle, formControls, isEdit, userType }) => {
     fetchMedicineTypes()
     fetchOrganics()
   }, [])
+
+  const fetchPincodeServices = async (value) => {
+    console.log('merchantID', value)
+    if (value && value !== '') {
+      const cData = await getAdminDeliveryLocation(value)
+      console.log('Res', cData)
+      if (cData.data) setPincode(cData.data)
+    }
+  }
 
   const generateCategoryTree = (c) => {
     const categoriesAGeneraltted = c.map((item) => {
@@ -244,7 +253,7 @@ const AGeneral = ({ hideSubmit, hasTitle, formControls, isEdit, userType }) => {
   //   console.log(name, val)
   //   setValues({ [name]: val })
   // })
-
+  console.log('pincode********', pincode, values.merchantId)
   const onChangeCategory = (e) => {
     console.log('category', e)
     setValues((a) => ({ ...a, category: e }))
@@ -311,7 +320,12 @@ const AGeneral = ({ hideSubmit, hasTitle, formControls, isEdit, userType }) => {
           name="merchantId"
           value={values.merchantId}
           placeholder="Select Merchant"
-          onChange={(a) => setValues((prev) => ({ ...prev, merchantId: a }))}
+          optionFilterProp="children"
+          onChange={(a) => {
+            values.pincode_services = ''
+            setValues((prev) => ({ ...prev, merchantId: a }))
+            fetchPincodeServices(a)
+          }}
           // style={{ width: '100%' }}
           // onPopupScroll={this.handlePopupScroll}
         >
@@ -336,6 +350,36 @@ const AGeneral = ({ hideSubmit, hasTitle, formControls, isEdit, userType }) => {
       label: 'SKU',
       error: errors.sku,
       dependency: 'linktoBase',
+      opposite: true,
+    },
+    {
+      label: 'Pincodes',
+      error: errors.pincode_services,
+      key: 'pincode_services',
+      name: 'pincode_services',
+      resetOnChange: 'merchantId',
+      // visible: [1],
+      // edit: isEdit,
+      type: (
+        <Select
+          // mode="multiple"
+          name="pincode_services"
+          value={values.pincode_services}
+          placeholder="Select Pincode"
+          onChange={(a) => {
+            console.log('a', a)
+            setValues((prev) => ({ ...prev, pincode_services: a }))
+          }}
+          // style={{ width: '100%' }}
+          // onPopupScroll={this.handlePopupScroll}
+        >
+          {pincode.map((d) => (
+            <Select.Option key={d._id} value={[{ type: d._id, ref: d.pincodes }]}>
+              {d.location_name}
+            </Select.Option>
+          ))}
+        </Select>
+      ),
     },
     {
       type: <Input value={values.slug} name="slug" />,
