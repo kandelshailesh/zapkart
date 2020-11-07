@@ -335,7 +335,7 @@ const AGeneral = ({ hideSubmit, hasTitle, formControls, isEdit, userType }) => {
       key: 'sku',
       label: 'SKU',
       error: errors.sku,
-      dependency: 'linktoBase',
+      opposite: true,
     },
     {
       type: <Input value={values.slug} name="slug" />,

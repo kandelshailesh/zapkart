@@ -1,4 +1,4 @@
-import { Button, Icon, Modal, notification, Tabs } from 'antd'
+import { Button, Icon, Modal, notification } from 'antd'
 import Form from 'components/Form'
 import Upload from 'components/Upload'
 import useFetching from 'hooks/useFetching'
@@ -12,15 +12,15 @@ import { STRINGS } from '_constants'
 import List from './list'
 // import data from './list/data.json'
 
-const { TabPane } = Tabs
+// const { TabPane } = Tabs
 
 const BannersList = ({ user }) => {
   const [isModalOpen, setisModalOpen] = useState(false)
-  const [activeTopKey, setActiveTopKey] = useState('a')
-  const onChangeTopTab = (a) => {
-    console.log('onChangeTopTab', a)
-    setActiveTopKey(a)
-  }
+  // const [activeTopKey, setActiveTopKey] = useState('a')
+  // const onChangeTopTab = (a) => {
+  //   console.log('onChangeTopTab', a)
+  //   setActiveTopKey(a)
+  // }
 
   const [{ response, loading, error, refetch }] = useFetching('/api/backend/v1/aggrement/merchant')
   console.log(error)
@@ -86,33 +86,35 @@ const BannersList = ({ user }) => {
           <div className="utils__title">
             <strong>Upload Agreements</strong>
             <div className="pull-right">
-              <Button
-                type="ghost"
-                // selectedRowKeys={selectedRowKeys}
-                // handleDelete={handleDelete}
-                attribute="Agreement"
-                onClick={() => {
-                  setisModalOpen(true)
-                }}
-              >
-                <Icon type="plus" />
-                upload Agreements
-              </Button>
+              {/* {user.userTypeId === 1 && (
+                <Button
+                  type="ghost"
+                  // selectedRowKeys={selectedRowKeys}
+                  // handleDelete={handleDelete}
+                  attribute="Agreement"
+                  onClick={() => {
+                    setisModalOpen(true)
+                  }}
+                >
+                  <Icon type="plus" />
+                  upload Agreements
+                </Button>
+              )} */}
             </div>
           </div>
         </div>
         <div className="card-body">
-          <Tabs tabPosition="top" activeKey={activeTopKey} onChange={onChangeTopTab}>
-            <TabPane key="a" tab="By Admin">
-              <List
-                loading={loading}
-                response={responseData?.adminFiles}
-                approveStatus={responseData?.approveStatus}
-                editable={false}
-                role={user.role}
-                ondelete={ondelete}
-              />
-            </TabPane>
+          {/* <Tabs tabPosition="top" activeKey={activeTopKey} onChange={onChangeTopTab}>
+            <TabPane key="a" tab="By Admin"> */}
+          <List
+            loading={loading}
+            response={responseData?.adminFiles}
+            approveStatus={responseData?.approveStatus}
+            editable
+            role={user.role}
+            ondelete={ondelete}
+          />
+          {/* </TabPane>
 
             <TabPane key="b" tab="By You">
               <List
@@ -124,7 +126,7 @@ const BannersList = ({ user }) => {
                 ondelete={ondelete}
               />
             </TabPane>
-          </Tabs>
+          </Tabs> */}
         </div>
       </div>
     </>

@@ -40,6 +40,11 @@ const AContact = ({ hasTitle }) => {
       label: 'Email',
     },
     {
+      type: <Input />,
+      key: 'phone',
+      label: 'phone',
+    },
+    {
       type: <Input.Password />,
       key: 'password',
       label: 'Password',

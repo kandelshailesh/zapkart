@@ -1,5 +1,5 @@
-import React from 'react'
-import { Button, Tabs } from 'antd'
+import React, { useState } from 'react'
+import { Button, Modal, Radio, Tabs } from 'antd'
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
 import useFetching from 'hooks/useFetching'
@@ -25,6 +25,7 @@ const orderBadges = {
 }
 
 const OrdersList = ({ user }) => {
+  const [isModalOpen, toggleodal] = useState()
   const [{ response, loading }] = useFetching(
     user.userTypeId === 1 ? CATALOG_API_URL.getAllOrders : CATALOG_API_URL.getMerchantsOrder,
   )
@@ -96,10 +97,10 @@ const OrdersList = ({ user }) => {
       render: (text, record) => (
         <>
           <Link to={`/order-management/orders/order/${record.id}`}>
-            <Button icon="checkmark2" type="primary" className="mr-1" size="small" />
+            <Button icon="tick" type="primary" className="mr-1" size="small" />
           </Link>
           <Link to={`/order-management/orders/order/${record.id}`}>
-            <Button icon="cross" type="danger" className="mr-1" size="small" />
+            <Button icon="close" type="danger" className="mr-1" size="small" />
           </Link>
         </>
       ),
@@ -108,17 +109,37 @@ const OrdersList = ({ user }) => {
 
   const actions = [
     {
-      key: 'accept',
-      Component: <Button type="primary">Accept Selected</Button>,
-    },
-    {
-      key: 'declinet',
-      Component: <Button type="danger">Decline Selected</Button>,
+      key: 'createShipment',
+      Component: (
+        <Button icon="plus" type="primary">
+          Create Shipment
+        </Button>
+      ),
+      actionType: 'createShipment',
     },
   ]
 
+  const handleActionClick = (ids, actionType) => {
+    if (actionType === 'createShipment') {
+      toggleodal(true)
+    }
+  }
   return (
     <div>
+      <Modal
+        visible={isModalOpen}
+        title="Chose Create Type"
+        destroyOnClose
+        onCancel={() => toggleodal(false)}
+        footer={null}
+      >
+        <div className="row justify-content-center">
+          <Radio.Group size="small">
+            <Radio.Button value="large">Selt Delivery</Radio.Button>
+            <Radio.Button value="default">Forword To Shipping agency</Radio.Button>
+          </Radio.Group>
+        </div>
+      </Modal>
       <Helmet title="Orders List" />
       <div className="card">
         <div className="card-header">
@@ -143,6 +164,9 @@ const OrdersList = ({ user }) => {
                 columns={columns}
                 dataSource={response && response.data ? response.data : []}
                 loading={loading}
+                rowKey={(record) => record.id}
+                actionButtons={actions}
+                onActionClick={handleActionClick}
               />
             </TabPane>
             <TabPane tab="Pending Orders" key="2">
@@ -150,16 +174,36 @@ const OrdersList = ({ user }) => {
                 className="utils__scrollTable"
                 scroll={{ x: '100%' }}
                 columns={columns}
-                dataSource={response && response.data ? response.data : []}
+                dataSource={
+                  response && response.data
+                    ? response?.data.filter((i) => i.orderStatus === 'hold')
+                    : []
+                }
                 loading={loading}
                 actionButtons={actions}
                 onActionClick={(w) => {
                   console.log('aaalcik', w)
                 }}
+                rowKey={(record) => record.id}
               />
             </TabPane>
             <TabPane tab="Completed order" key="3">
-              Content of Tab Pane 3
+              <Table
+                className="utils__scrollTable"
+                scroll={{ x: '100%' }}
+                columns={columns}
+                dataSource={
+                  response && response.data
+                    ? response?.data.filter((i) => i.orderStatus === 'completed')
+                    : []
+                }
+                loading={loading}
+                actionButtons={actions}
+                onActionClick={(w) => {
+                  console.log('aaalcik', w)
+                }}
+                rowKey={(record) => record.id}
+              />
             </TabPane>
           </Tabs>
         </div>

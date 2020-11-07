@@ -496,6 +496,18 @@ const routes = [
     component: loadable(() => import('pages/merchant/indexform')),
     exact: true,
   },
+
+  // commision
+  {
+    path: '/merchant/commission/:type/list',
+    component: loadable(() => import('pages/merchantComission/category')),
+    exact: true,
+  },
+  // {
+  //   path: '/merchant/commission/:type/list',
+  //   component: loadable(() => import('pages/merchantComission/category')),
+  //   exact: true,
+  // },
   // coupen
   {
     path: '/coupon/list',

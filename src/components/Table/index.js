@@ -145,7 +145,8 @@ const Table = (props) => {
       )}
       {actionButtons && selectedRowKeys.length > 0 && (
         <div className="pull-right" style={{ zIndex: 1, position: 'relative' }}>
-          {actionButtons.map((i) => {
+          {console.log('pops', actionButtons, selectedRowKeys)}
+          {actionButtons?.map((i) => {
             console.log('pops', i)
             const { actionType, Component } = i
             return (
