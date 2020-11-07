@@ -14,6 +14,7 @@ import AddNewAddress from 'pages/orders-new/components/addAddress'
 import Addprecriptions from 'pages/orders-new/components/Addprecriptions'
 import OrderedItemsTable from 'pages/orders-new/create-new/ProductsTable'
 import getPrescriptionByAdmin from 'services/orders'
+import getuserCart from 'services/cart'
 
 const styles = {
   width: {
@@ -50,7 +51,7 @@ const CountryEditForm = ({ initialValues, onSubmit }) => {
     setFetchingProds(true)
     const data = await getProducts({
       search: { name: value },
-      fields: ['name', '_id', 'images', 'productPricing', 'sku'],
+      fields: ['name', '_id', 'images', 'productPricing', 'sku', 'stock'],
     })
     // const data = await getProducts({ search: { name: value }, fields: ['name', '_id'] })
     setFetchingProds(false)
@@ -68,6 +69,9 @@ const CountryEditForm = ({ initialValues, onSubmit }) => {
     })
     getPrescriptionByAdmin(user).then((value) => {
       setPrescription(value?.prescriptions)
+    })
+    getuserCart(user).then((value) => {
+      mapProducts(value?.cartlistDetails)
     })
   }
 
@@ -96,6 +100,39 @@ const CountryEditForm = ({ initialValues, onSubmit }) => {
     })
     // }
   }, [subtotal, DeliveryCost, total])
+
+  const mapProducts = (val) => {
+    let subtotalPrice = 0
+    setorderItems(
+      val?.map((i) => {
+        const selected = i.product
+        subtotalPrice += selected?.productPricing?.salePrice
+        return {
+          image:
+            selected.images && selected.images && selected.images.length > 0
+              ? selected.images[0].thumbnail
+              : null,
+          sku: selected.sku ? selected.sku : '',
+          title: selected.name ? selected.name : '',
+          price: {
+            listPrice: selected?.productPricing?.listPrice,
+            salePrice: selected?.productPricing?.salePrice,
+          },
+          quantity: 1,
+          minOrderQty: selected.minOrderQty ? selected.minOrderQty : 1,
+          prescriptionRequired: selected.prescriptionRequired
+            ? selected.prescriptionRequired === 'yes'
+            : false,
+          maxOrderQty: selected.maxOrderQty ? selected.maxOrderQty : null,
+          subtotal: selected.subtotal ? selected.subtotal : selected?.productPricing?.salePrice,
+          productId: selected._id ? selected._id : '',
+          id: selected._id,
+          cartId: i.id,
+        }
+      }),
+    )
+    setSubtotal(subtotal + subtotalPrice)
+  }
 
   const handleProductSelect = (val) => {
     const selected = products.find((i) => i._id === val.key)
@@ -151,7 +188,6 @@ const CountryEditForm = ({ initialValues, onSubmit }) => {
     setSubtotal(subtotal + effectivePrice - lessprice)
   })
 
-
   const handleProductDeSelect = (val) => {
     let totalAmt = 0
     const arr = []
@@ -206,6 +242,23 @@ const CountryEditForm = ({ initialValues, onSubmit }) => {
   const handleSubmit = (e) => {
     const data = { ...e, cart: orderItems }
     if (onSubmit) onSubmit(data)
+  }
+
+  const handledelete = (val) => {
+    let totalAmt = 0
+    const arr = []
+    orderItems.forEach((element) => {
+      if (element.cartId !== val) {
+        arr.push(element)
+      } else {
+        totalAmt += element.subtotal
+      }
+    })
+
+    setorderItems(arr)
+
+    setSubtotal(subtotal - totalAmt)
+    // setorderItems((prev) => prev.filter((i) => i?.cartId !== val))
   }
 
   const formItems = [
@@ -365,6 +418,7 @@ const CountryEditForm = ({ initialValues, onSubmit }) => {
           onEditCell={(e) => {
             updateQantity(e)
           }}
+          onDelete={handledelete}
           // onAdd={onAddOrderItem}
           summary={orderSummaryInfo}
         />

@@ -22,6 +22,19 @@ export const PATH_CUSTOM_ATTRIBUTES = {
   add: '/catalog/customattributes/create',
   edit: '/catalog/customattributes/attributes',
 }
+
+export const PATH_COMMISSION_CATAGORY = {
+  list: '/merchant/commission/category/list',
+  add: '/merchant/commission/category/create',
+  edit: '/merchant/commission/category/edit',
+}
+
+export const API_COMMISSION_CATAGORY = {
+  edit: '/api/catalog/v1/productprice/commision',
+  list: '/api/catalog/v1/productprice/commision',
+  create: '/api/catalog/v1/productprice/commision',
+}
+
 export const API_CUSTOM_ATTRIBUTES = {
   edit: '/api/catalog/v1/customattributes',
   list: '/api/catalog/v1/customattributes',
@@ -92,7 +105,10 @@ export const CATALOG_API_URL = {
   getUserReviews: '/api/backend/v1/reviews/user',
   editProductUserReview: '/api/backend/v1/reviews/edit',
   deleteReview: '/api/backend/v1/reviews/delete',
+
   users: '/api/backend/v1/users',
+  getUserCart: '/api/backend/v1/cart',
+  deleteCart: '/api/backend/v1/deletecart',
 
   getUserOrders: '/api/backend/v1/order/user',
 

@@ -314,7 +314,7 @@ const Products = (props) => {
     },
     {
       title: 'Price',
-      dataIndex: 'pricing',
+      dataIndex: 'productPricing',
       key: 'price',
       render: (_, record) => {
         if (user.userTypeId === 1) {
@@ -328,8 +328,8 @@ const Products = (props) => {
         }
         return (
           <div className="list-sale-price">
-            <span>Rs {record.pricing ? record?.productPricing?.salePrice : ''}</span>
-            <span>Rs {record.pricing ? record?.productPricing?.listPrice : ''}</span>
+            <span>Rs {record.productPricing ? record?.productPricing?.salePrice : ''}</span>
+            <span>Rs {record.productPricing ? record?.productPricing?.listPrice : ''}</span>
           </div>
         )
       },

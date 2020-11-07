@@ -161,6 +161,18 @@ export async function getLeftMenuData() {
           url: '/merchant',
           pro: false,
         },
+        {
+          title: 'Commission by Catagory',
+          key: 'comissionbycatagory',
+          url: '/merchant/commission/category/list',
+          pro: false,
+        },
+        {
+          title: 'Commission by Brands',
+          key: 'commissionbycatgory',
+          url: '/merchant/commission/brand/list',
+          pro: false,
+        },
       ],
     },
     {
@@ -464,6 +476,18 @@ export async function getLeftMenuDataSeller() {
       key: 'orders',
       url: '/order-management/orders',
       icon: 'icmn icmn-credit-card',
+    },
+    {
+      title: 'Commission by Catagory',
+      key: 'comissionbycatagory',
+      url: '/merchant/commission/category/list',
+      pro: false,
+    },
+    {
+      title: 'Commission by Brands',
+      key: 'commissionbycatgory',
+      url: '/merchant/commission/brand/list',
+      pro: false,
     },
     {
       title: 'Agreements',

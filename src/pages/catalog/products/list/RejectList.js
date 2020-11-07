@@ -323,8 +323,8 @@ const Products = (props) => {
         }
         return (
           <div className="list-sale-price">
-            <span>Rs {record.pricing ? record?.productPricing?.salePrice : ''}</span>
-            <span>Rs {record.pricing ? record?.productPricing?.listPrice : ''}</span>
+            <span>Rs {record?.productPricing?.salePrice || ''}</span>
+            <span>Rs {record?.productPricing?.listPrice || ''}</span>
           </div>
         )
       },

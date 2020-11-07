@@ -1,11 +1,13 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable prefer-destructuring */
-import React, { Component } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { Table, Icon, InputNumber, Input, Select } from 'antd'
+import { Table, Icon, InputNumber, Input, Select, Popconfirm, Button } from 'antd'
 import DescriptionList from 'components/DescriptionList'
 import PlaceholderImage from 'components/PlaceholderImage'
 import CardWrapper from 'components/CardWrapper'
+import { deleteData } from 'services'
+import { CATALOG_API_URL } from '_constants'
 
 class EditableCell extends Component {
   state = {
@@ -81,9 +83,14 @@ class EditableCell extends Component {
     )
   }
 }
-@connect(({ user }) => ({ user }))
-class EditableTable extends React.Component {
-  columns = [
+const EditableTable = ({ data, summary, onEditCell, onDelete }) => {
+  const [dataSource, setDataSource] = useState([])
+
+  useEffect(() => {
+    setDataSource(data)
+  }, [data])
+
+  const columns = [
     // sku, title, price, qty, total, delete
     {
       title: 'SKU',
@@ -121,7 +128,7 @@ class EditableTable extends React.Component {
           <EditableCell
             type="number"
             value={text}
-            onChange={this.onCellChange(record.id, 'quantity')}
+            onChange={onCellChange(record.id, 'quantity')}
             min={record.minOrderQty || 0}
             max={record.maxOrderQty || undefined}
           />
@@ -133,37 +140,35 @@ class EditableTable extends React.Component {
       dataIndex: 'subtotal',
       render: (text) => <span>₹{text}</span>,
     },
+    {
+      title: 'Action',
+      dataIndex: 'action',
+      render: (text, record) =>
+        record.cartId && (
+          <span>
+            <Popconfirm title="Sure to delete?" onConfirm={() => onRemove(record.cartId)}>
+              <Button icon="close" size="small" />
+            </Popconfirm>
+          </span>
+        ),
+    },
   ]
 
-  constructor(props) {
-    super(props)
-
-    const { data } = this.props
-
-    this.state = {
-      dataSource: data,
+  const onRemove = async (id) => {
+    const deleted = await deleteData(`${CATALOG_API_URL.deleteCart}/${id}`)
+    if (deleted) {
+      setDataSource((prev) => prev.filter((i) => i.cartId !== id))
+      if (onDelete) onDelete(id)
     }
   }
 
-  componentWillReceiveProps = () => {
-    const { data } = this.props
-    console.log('compom wil recice ve', data)
-
-    this.setState({
-      dataSource: data,
-    })
-  }
-
   // closure
-  onCellChange = (key, dataIndex) => {
-    const { onEditCell } = this.props
-    const { dataSource } = this.state
+  const onCellChange = (key, dataIndex) => {
     return async (value) => {
       const targetIndex = dataSource?.findIndex((item) => {
         console.log(item)
         return item.id === key
       })
-      console.log('onCellChange res', key, targetIndex, dataSource, dataIndex, value)
 
       if (targetIndex > -1) {
         const edited = await onEditCell({
@@ -179,43 +184,33 @@ class EditableTable extends React.Component {
         return true
       }
       return false
-      // const dataSource = [...this.state.dataSource]
-      // const target = dataSource.find((item) => item.key === key)
-      // if (target) {
-      //   target[dataIndex] = value
-      //   this.setState({ dataSource })
-      // }
     }
   }
 
-  render() {
-    // eslint-disable-next-line no-unused-vars
-    const { dataSource } = this.state
-    const { summary, data } = this.props
-
-    return (
-      <>
-        <CardWrapper className="order-items-table" title="Edit Order Item">
+  return (
+    <>
+      <CardWrapper className="order-items-table" title="Edit Order Item">
+        {dataSource && (
           <Table
             bordered
             scroll={{ x: '100%' }}
-            dataSource={data}
-            columns={this.columns}
+            dataSource={dataSource.length > 0 ? dataSource : []}
+            columns={columns}
             rowKey={(record) => record.id}
           />
-          {summary && (
-            <div className="border-top d-flex pr-4 pt-4">
-              <DescriptionList
-                className="ml-auto"
-                data={summary}
-                rowClassName="white-space-no-wrap"
-              />
-            </div>
-          )}
-        </CardWrapper>
-      </>
-    )
-  }
+        )}
+        {summary && (
+          <div className="border-top d-flex pr-4 pt-4">
+            <DescriptionList
+              className="ml-auto"
+              data={summary}
+              rowClassName="white-space-no-wrap"
+            />
+          </div>
+        )}
+      </CardWrapper>
+    </>
+  )
 }
 
-export default EditableTable
+export default connect(({ user }) => ({ user }))(EditableTable)

@@ -323,22 +323,12 @@ const Products = (props) => {
           )
         }
         return (
-          <Button
-            size="small"
-            type="primary"
-            onClick={() => {
-              //   setProductID(record._id)
-              //   setisModalOpen(true)
-            }}
-          >
-            Price List
-          </Button>
+          <div className="list-sale-price">
+            <span>Rs {record.pricing.salePrice || ''}</span>
+            <span>Rs {record.pricing.listPrice || ''}</span>
+          </div>
         )
       },
-      // <div className="list-sale-price">
-      //   <span>Rs {record.pricing ? record.pricing.salePrice : ''}</span>
-      //   <span>Rs {record.pricing ? record.pricing.listPrice : ''}</span>
-      // </div>
     },
     {
       title: 'Status',
