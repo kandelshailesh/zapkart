@@ -1,4 +1,4 @@
-import { Button, Icon, Modal, notification, Tabs } from 'antd'
+import { Button, Icon, Modal, notification } from 'antd'
 import Form from 'components/Form'
 import Upload from 'components/Upload'
 import useFetching from 'hooks/useFetching'
@@ -8,7 +8,7 @@ import { Helmet } from 'react-helmet'
 import { connect } from 'react-redux'
 import {
   deleteAgreementByAdmin,
-  UpdateAgreementStatusByAdmin,
+  // UpdateAgreementStatusByAdmin,
   uploadAgreementByAdmin,
 } from 'services'
 import { uploadAdminDOCSchema } from 'utils/Schema'
@@ -16,16 +16,16 @@ import { STRINGS } from '_constants'
 import List from './list'
 // import data from './list/data.json'
 
-const { TabPane } = Tabs
+// const { TabPane } = Tabs
 
 const BannersList = ({ userId, user }) => {
   const [isModalOpen, setisModalOpen] = useState(false)
-  const [activeTopKey, setActiveTopKey] = useState('a')
+  // const [activeTopKey, setActiveTopKey] = useState('a')
 
-  const onChangeTopTab = (a) => {
-    console.log('onChangeTopTab', a)
-    setActiveTopKey(a)
-  }
+  // const onChangeTopTab = (a) => {
+  //   console.log('onChangeTopTab', a)
+  //   setActiveTopKey(a)
+  // }
   const [{ response, loading, error, refetch }] = useFetching(
     `/api/backend/v1/aggrement/admin/${userId}`,
   )
@@ -50,15 +50,15 @@ const BannersList = ({ userId, user }) => {
       refetch()
     }
   }
-  const onStatusChange = async (obj) => {
-    const success = await UpdateAgreementStatusByAdmin(obj)
-    if (success) {
-      notification.success({
-        message: 'Uploaded successfully',
-      })
-      refetch()
-    }
-  }
+  // const onStatusChange = async (obj) => {
+  //   const success = await UpdateAgreementStatusByAdmin(obj)
+  //   if (success) {
+  //     notification.success({
+  //       message: 'Uploaded successfully',
+  //     })
+  //     refetch()
+  //   }
+  // }
 
   const onDeleteFile = async (val) => {
     const success = await deleteAgreementByAdmin(val)
@@ -119,18 +119,18 @@ const BannersList = ({ userId, user }) => {
           </div>
         </div>
         <div className="card-body">
-          <Tabs tabPosition="top" activeKey={activeTopKey} onChange={onChangeTopTab}>
-            <TabPane key="a" tab="By Admin">
-              <List
-                response={responseData?.adminFiles}
-                editable
-                role={user.role}
-                userId={userId}
-                approveStatus={responseData?.approveStatus}
-                loading={loading}
-                onDeleteFile={onDeleteFile}
-              />
-            </TabPane>
+          {/* <Tabs tabPosition="top" activeKey={activeTopKey} onChange={onChangeTopTab}>
+            <TabPane key="a" tab="By Admin"> */}
+          <List
+            response={responseData?.adminFiles}
+            editable
+            role={user.role}
+            userId={userId}
+            approveStatus={responseData?.approveStatus}
+            loading={loading}
+            onDeleteFile={onDeleteFile}
+          />
+          {/* </TabPane>
             <TabPane key="b" tab="By Merchant ">
               <List
                 response={responseData?.merchantFiles}
@@ -143,7 +143,7 @@ const BannersList = ({ userId, user }) => {
                 onDeleteFile={onDeleteFile}
               />
             </TabPane>
-          </Tabs>
+          </Tabs> */}
         </div>
       </div>
     </>

@@ -21,6 +21,15 @@ const OrdersList = ({ response, approveStatus, loading, editable = true, role, o
       render: (text, record) => (
         <>
           <Button
+            icon="check"
+            onClick={() => {
+              // window.open(record.path)
+            }}
+            type="primary"
+            className="mr-1"
+            size="small"
+          />
+          <Button
             icon="eye"
             onClick={() => {
               window.open(record.path)

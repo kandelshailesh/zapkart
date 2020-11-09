@@ -722,7 +722,6 @@ export const customAttrubitesSchema = Yup.object().shape({
 
 export const createOrderSchema = Yup.object().shape({
   userId: Yup.string().required('Required'),
-  cart: Yup.array().required('Required'),
   shippingId: Yup.string().required('Required'),
 })
 
@@ -747,4 +746,16 @@ export const prescriptionSchema = Yup.object().shape({
     )
     .test('emptyArray', 'A file is required', (a) => a && a.length !== 0)
     .required('A file is required'),
+})
+
+export const commissionByadminschema = Yup.object().shape({
+  type: Yup.string().required('Required'),
+  commission: Yup.number().required('Required'),
+  typedetail: Yup.array().required('Required'),
+})
+
+export const commissionByadminschemaedit = Yup.object().shape({
+  type: Yup.string().required('Required'),
+  commission: Yup.number().required('Required'),
+  typedetail: Yup.string().required('Required'),
 })

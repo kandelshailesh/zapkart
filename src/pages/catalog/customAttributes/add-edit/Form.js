@@ -188,12 +188,13 @@ const CustomAttributes = ({ initialValues, handleSubmit }) => {
     setformItemsData(data)
   }
 
+  // const handleChnage = () => {}
   const fromItems2 = formItemsData.map((i, ind) => {
     return [
       {
         type: (
           <div>
-            <Input name={`value[${ind}]`} width="auto" />
+            <Input onBlur={(e, w) => console.log('aaaa anshu', e, w)} width="auto" />
             <Upload
               name={`image[${ind}]`}
               maxCount={1}
