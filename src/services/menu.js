@@ -12,6 +12,13 @@ export async function getLeftMenuData() {
     {
       divider: true,
     },
+    {
+      title: 'Deliver Location Creation Admin',
+      key: 'deliverLocationCreation',
+      pro: false,
+      icon: 'icmn icmn-barcode',
+      url: '/deliverLocation',
+    },
     // Catalog
     {
       title: 'Catalog',
@@ -38,7 +45,7 @@ export async function getLeftMenuData() {
           children: [
             {
               title: 'Products',
-              key: 'productss',
+              key: 'products',
               url: '/catalog/products',
               pro: false,
               icon: 'icmn icmn-barcode',
@@ -463,6 +470,13 @@ export async function getLeftMenuDataSeller() {
       key: 'dashboardSeller',
       url: '/dashboard/seller',
       icon: 'icmn icmn-home',
+    },
+    {
+      title: 'Deliver Location Creation Merchant',
+      key: 'deliverLocationCreation',
+      pro: false,
+      icon: 'icmn icmn-barcode',
+      url: '/deliverLocation',
     },
     {
       title: 'Products',

@@ -25,11 +25,23 @@ const routes = [
     component: loadable(() => import('pages/user/login')),
     exact: true,
   },
-  // {
-  //   path: '/catalog/category',
-  //   component: loadable(() => import('pages/catalog/category')),
-  //   exact: true
-  // },
+  // deliverLocation
+  {
+    path: '/deliverLocation',
+    component: loadable(() => import('pages/deliverLocation/list')),
+    exact: true
+  },
+  {
+    path: '/deliverLocation/add-edit',
+    component: loadable(() => import('pages/deliverLocation/add-edit')),
+    exact: true,
+  },
+  {
+    path: '/deliverLocation/:id',
+    component: loadable(() => import('pages/deliverLocation/add-edit')),
+    exact: true,
+  },
+ 
   // Catalog
   // Catalog/Category
   {
