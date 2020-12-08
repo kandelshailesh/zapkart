@@ -1,4 +1,3 @@
-/* eslint-disable */
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect, useMemo, useState } from 'react'
@@ -10,27 +9,41 @@ import { Input, Radio, Select, Button, Icon } from 'antd'
 import Upload from 'components/Upload'
 import AddNew from 'components/CustomComponents/AddNew'
 import { isEmpty, isUndefined } from 'lodash'
-import { API_CUSTOM_ATTRIBUTES } from '_constants'
+import Axios from 'axios'
 import { getFormData } from '../../../../utils/index'
-import callApi from '../../../../utils/callApi'
 
 const { Option, OptGroup } = Select
 
-const CustomAttributes = ({ initialValues, handleSubmit, history, type, id = '' }) => {
+const CustomAttributes = ({ initialValues, handleSubmit }) => {
   const [formItemsData, setformItemsData] = useState([{ _id: 'index[0]', deleted: false }])
-
   const [imageList, setimageList] = useState({})
-  const [customImage, setcustomImage] = useState({})
+  const [customImage, setcustomImage] = useState([])
+  const [editValue, seteditValue] = useState([])
+  const [editImage, seteditImage] = useState([])
+
   const initialVals = useMemo(() => {
     if (initialValues) {
+      console.log(editValue)
+      console.log(editImage)
       const { options } = initialValues
       const data = {}
       const imageListtemp = []
       const formcount = []
       if (!isEmpty(options)) {
+        // alert('not empty')
         options.forEach((e, ind) => {
           const { value, filename, imagePath, _id } = e
-          imageListtemp.push({ [`image[${ind}]`]: { filename, imagePath, _id } })
+          imageListtemp.push({ [`value[${ind}]`]: { filename, imagePath, _id } })
+          seteditImage((prev) => [
+            ...prev,
+            [
+              {
+                uid: _id,
+                url: imagePath,
+                filename,
+              },
+            ],
+          ])
           data[`image[${ind}]`] = [
             {
               uid: _id,
@@ -38,11 +51,15 @@ const CustomAttributes = ({ initialValues, handleSubmit, history, type, id = '' 
               filename,
             },
           ]
+
           data[`value[${ind}]`] = value
-          formcount.push({ _id: `index[${ind}]`, id: _id, deleted: false, ...data })
+          seteditValue((prev) => [...prev, value])
+          formcount.push({ _id: `index[${ind}]`, deleted: false, ...data })
         })
         setformItemsData(formcount)
         setimageList(imageListtemp)
+        // const testing = { ...initialValues, ...data }
+        // console.log(JSON.stringify(testing, null, 2))
         return { ...initialValues, ...data }
       }
       return { ...initialValues }
@@ -51,146 +68,66 @@ const CustomAttributes = ({ initialValues, handleSubmit, history, type, id = '' 
   }, [initialValues])
 
   const submitForm = async (formValue) => {
-    console.log('Baba')
-    console.log(formValue)
-    if (type === 'add') {
-      if (conditions.includes(formValue.inputType)) {
-        const { mainValues } = formValue
-        const values = []
-        const image = []
-        mainValues.forEach((e) => {
-          if (e.deleted === false) {
-            const abc = e._id.split(/[[\]]{1,2}/)
-            const name = ''
-            try {
-              if (imageList[`value[${abc[1]}]`]) {
-                image.push(imageList[`value[${abc[1]}]`].originFileObj)
-                name = imageList[`value[${abc[1]}]`].name
-              }
-            } catch (e) {
-              console.log(e)
-            }
-
-            const value = formValue[`value[${abc[1]}]`]
-            values.push({ value, image: name })
-            delete formValue[`value[${abc[1]}]`]
-            delete formValue[`image[${abc[1]}]`]
+    console.log('formValue', formValue, imageList, customImage)
+    if (conditions.includes(formValue.inputType)) {
+      const { mainValues } = formValue
+      const values = []
+      const image = []
+      mainValues.forEach((e) => {
+        if (e.deleted === false) {
+          const abc = e._id.split(/[[\]]{1,2}/)
+          if (imageList) {
+            image.push(imageList[`value[${abc[1]}]`].originFileObj)
           }
-        })
-        delete formValue.mainValues
-        if (formValue['']) {
-          delete formValue['']
+          const { name = '' } = imageList[`value[${abc[1]}]`]
+          const value = formValue[`value[${abc[1]}]`]
+          values.push({ value, image: name })
+          delete formValue[`value[${abc[1]}]`]
+          delete formValue[`image[${abc[1]}]`]
         }
-
-        if (handleSubmit) {
-          const data = { ...formValue, values }
-          const formData = getFormData(data)
-
-          formItemsData.forEach((e, i) => {
-            try {
-              const getImage = customImage[`value[${i}]`].originFileObj
-              if (e.deleted === false && getImage) {
-                formData.append('customImage', customImage[`value[${i}]`].originFileObj)
-              }
-            } catch (e) {
-              console.log(e)
-            }
-          })
-
-          // Object.keys(customImage).forEach((key) => {
-          //   if (customImage[key]) {
-          //     if (customImage[key].originFileObject) {
-          //       formData.append('customImage', customImage[key].originFileObject)
-          //     }
-          //   }
-          // })
-
-          try {
-            await callApi(API_CUSTOM_ATTRIBUTES.create, {
-              body: formData,
-              method: 'POST',
-              mode: 'no-cors',
-            })
-            history.go(-1)
-          } catch (err) {
-            console.log(err)
-          }
-        } else {
-          const data = { ...formValue }
-          if (handleSubmit) handleSubmit(data) //
-        }
+      })
+      delete formValue.mainValues
+      if (formValue['']) {
+        delete formValue['']
       }
-    } else if (type === 'edit') {
-      if (conditions.includes(formValue.inputType)) {
-        // const { options } = formValue
-        const newvalues = []
-        const image = []
-        const values = []
-        formItemsData
-          .filter((e) => e.deleted === false)
-          // .filter((e) => e.id === undefined)
-          .forEach((e) => {
-            const abc = e._id.split(/[[\]]{1,2}/)
 
-            if (imageList) {
-              image.push(imageList[`value[${abc[1]}]`].originFileObj)
-            }
-            const name =
-              imageList[`value[${abc[1]}]`].name || imageList[`value[${abc[1]}]`].filename
-            const value = formValue[`value[${abc[1]}]`]
-            // newvalues.push({ value, image: name,e.id })
-            values.push({ value, image: name, _id: e.id })
-            delete formValue[`value[${abc[1]}]`]
-            delete formValue[`image[${abc[1]}]`]
-          })
+      console.log('value form', { ...formValue, values })
 
-        // delete formValue.mainValues
-        if (formValue['']) {
-          delete formValue['']
-        }
+      if (handleSubmit) {
+        const data = { ...formValue, values }
+        // const finalImage = Object.keys(customImage).map((value) => ({
+        //   customImage: customImage[value],
+        // }))
+        // console.log('Final Image', finalImage)
 
-        if (handleSubmit) {
-          // const data = { ...formValue, newvalues }
-          const data = { ...formValue, values }
+        const formData = getFormData(data)
 
-          const formData = getFormData(data)
-
-          formItemsData.forEach((e, i) => {
-            if (e.deleted === false && customImage[`value[${i}]`]?.originFileObj) {
-              formData.append('customImage', customImage[`value[${i}]`].originFileObj)
-            }
-          })
-
-          // Object.keys(customImage).forEach((key) => {
-          //   formData.append('customImage', customImage[key].originFileObj)
-          // })
-          formItemsData.forEach((e, index) => {
-            if (e.deleted === true) {
-              formData.append('deletedValues[]', formValue.options[index]._id)
-            }
-          })
-          delete formValue.options
-          delete formValue.mainValues
-          // customImage.forEach(({ value }) => {
-          //   formData.append('customImage', value.originFileObj)
-          // })
-          try {
-            await callApi(`${API_CUSTOM_ATTRIBUTES.edit}/${id}`, {
-              body: formData,
-              method: 'PATCH',
-            })
-            history.go(-1)
-          } catch (err) {
-            console.log(err)
-          }
-        }
+        // console.log('formdata', formData)
+        // Object.keys(customImage).forEach((key) => {
+        //   // console.log(key,value)
+        //   formData.append('customImage', customImage[key])
+        // })
+        customImage.forEach((key) => {
+          // console.log(key,value)
+          formData.append('customImage', customImage[key].originFileObj)
+        })
+        // handleSubmit(formData)
+        Axios.post(
+          'http://zapkartbackend.riolabz.com/api/catalog/v1/customattributes/create',
+          // 'http://localhost:5002/testing',
+          formData,
+          {
+            headers: { 'Content-Type': 'multipart/form-data' },
+          },
+        )
+          .then((result) => console.log(result))
+          .catch((err) => console.log(err))
       } else {
         const data = { ...formValue }
         if (handleSubmit) handleSubmit(data) //
       }
     }
   }
-
   const formItems = [
     {
       type: <Input name="label" />,
@@ -313,21 +250,24 @@ const CustomAttributes = ({ initialValues, handleSubmit, history, type, id = '' 
           <div>
             <Input
               name={`value[${ind}]`}
-              defaultValue={i[`value[${ind}]`]}
+              defaultValue={editValue.length > 0 ? editValue[ind] : ''}
               onBlur={(e, w) => console.log('aaaa anshu', e, w)}
-              onChange={(e, w) => ({ ...e, [`value[${ind}]`]: e })}
               width="auto"
             />
-
             <Upload
               name={`image[${ind}]`}
-              defaultFileList={i[`image[${ind}]`] ? i[`image[${ind}]`] : []}
+              defaultFileList={editImage.length > 0 ? editImage[ind] : []}
+              // name="customImage"
               maxCount={1}
               // onChange={(value, name) => {
               //   console.log('hello', name, value)
               //   setimageList((prev) => ({ ...prev, [name]: value }))
               // }}
               onChange={(file) => {
+                // setimageList((prev) => ({ ...prev, [`value[${ind}]`]: e[0] }))
+                // if (file[0]) {
+                //   setCustomImage((prev) => ({}))
+                // }
                 setimageList((prev) => ({ ...prev, [`value[${ind}]`]: file[0] }))
                 setcustomImage((prev) => ({ ...prev, [`value[${ind}]`]: file[0] }))
               }}
@@ -364,9 +304,14 @@ const CustomAttributes = ({ initialValues, handleSubmit, history, type, id = '' 
               setValues((e) => ({ ...e, mainValues: formItemsData }))
             }
           }, [values.inputType])
+
           useEffect(() => {
             setValues((e) => ({ ...e, mainValues: formItemsData }))
           }, [formItemsData])
+          /* useEffect(() => {
+          //   setValues((e) => ({ ...e, mainValues: formItemsData }))
+          // }, [formItemsData]) */
+
           let from2 = ''
           if (!isUndefined(values.inputType) && conditions.includes(values.inputType)) {
             from2 = (
@@ -411,4 +356,17 @@ const CustomAttributes = ({ initialValues, handleSubmit, history, type, id = '' 
 
 const conditions = ['drop-down', 'multiple-select']
 
+// const formItemLayout = {
+//   labelCol: {
+//     xs: { span: 24 },
+//     sm: { span: 5 },
+//     lg: { span: 5 },
+//   },
+//   wrapperCol: {
+//     xs: { span: 24 },
+//     sm: { span: 9 },
+//     lg: { span: 6 },
+//     // lg: { span: 18 },
+//   },
+// }
 export default withRouter(CustomAttributes)

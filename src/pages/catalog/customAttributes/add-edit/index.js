@@ -13,6 +13,9 @@ const CountryEditFormIndex = (props) => {
 
   const onAddNew = (values) => {
     console.log('check', values)
+    if (values['']) {
+      delete values['']
+    }
     const url = API_CUSTOM_ATTRIBUTES.create
     submitData(url, values, 'POST')
   }
@@ -38,12 +41,13 @@ const CountryEditFormIndex = (props) => {
       })
   }
 
-  let form = <Form handleSubmit={onAddNew} />
+  let form = <Form handleSubmit={onAddNew} type="add" />
   if (id) {
     form = (
       <Query url={`${API_CUSTOM_ATTRIBUTES.edit}/${id}`} loader={<Skeleton active />}>
         {(res) => {
-          if (res?.data) return <Form initialValues={res.data} handleSubmit={onEdit} />
+          if (res?.data)
+            return <Form initialValues={res.data} id={id} type="edit" handleSubmit={onEdit} />
           return <div>No data!</div>
         }}
       </Query>

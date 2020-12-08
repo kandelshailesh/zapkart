@@ -84,6 +84,9 @@ const FormIndex = (props) => {
 
   console.log('sdfsdfsdfjksbdjk', props)
   const { data, user } = props
+
+  console.log('Data')
+  console.log(JSON.stringify(data, null, 2))
   let transformedData = null
   if (data) transformedData = transformProductToForm(data)
   const initialValues = transformedData || {
@@ -100,8 +103,10 @@ const FormIndex = (props) => {
         value: '',
       },
     ],
-    groupPrice: [{ customerGroup: '', price: '' }],
-    tierPrice: [{ customerGroup: '', quantity: '', price: '' }],
+    // groupPrice: [{ customerGroup: '', price: '' }],
+    // tierPrice: [{ customerGroup: '', quantity: '', price: '' }],
+    groupPrice: [],
+    tierPrice: [],
     featured: false,
     status: 'hold',
     priorityOrder: 0,

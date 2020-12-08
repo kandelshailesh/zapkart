@@ -228,13 +228,21 @@ export async function addProduct(values, parentId) {
           formData.append(
             'cutomAttributes',
             JSON.stringify(
-              value.map((i) => ({
-                attribute: i.attribute,
-                values: i.value,
-                inputType: i.inputType,
-              })),
+              value
+                .filter((val) => val.value)
+                .map((i) => ({
+                  // attribute: i.attribute._id,
+                  // values: i.value.map((va) => va._id),
+                  // inputType: i.inputType,
+                  attribute: i.attribute,
+                  values: i.value,
+                  inputType: i.inputType,
+                })),
             ),
           )
+          value
+            .filter((val) => val.inputType === 'file')
+            .map((val) => formData.append('cutomAttributeFile', val.value.originFileObj))
         } else {
           formData.append('cutomAttributes', [])
         }
@@ -449,6 +457,9 @@ export async function editProduct(values, id, originalData) {
               })),
             ),
           )
+          value
+            .filter((val) => val.inputType === 'file')
+            .map((val) => formData.append('cutomAttributeFile', val.value.originFileObj))
         } else {
           formData.append('cutomAttributes', [])
         }
@@ -466,7 +477,7 @@ export async function editProduct(values, id, originalData) {
             ),
           )
         } else {
-          formData.append('groupPrice', [])
+          formData.append('groupPrice[]', null)
         }
 
         break
@@ -484,7 +495,7 @@ export async function editProduct(values, id, originalData) {
             ),
           )
         } else {
-          formData.append('tierPrice', [])
+          formData.append('tierPrice[]', null)
         }
 
         break
@@ -677,10 +688,11 @@ export function transformProductToForm(data) {
           }))
         : [],
     cutomAttributes:
-      cutomAttributes && cutomAttributes.length && attributes.length > 0 && attributes.length > 0
+      // cutomAttributes && cutomAttributes.length && attributes.length > 0 && attributes.length > 0
+      cutomAttributes && cutomAttributes.length > 0
         ? cutomAttributes.map((i) => ({
-            attribute: i.attribute._id,
-            value: i.values,
+            attribute: i.attribute?._id ? i.attribute._id : '',
+            values: Array.isArray(i.values) ? i.values.map((va) => va._id) : i.values,
             inputType: i.inputType,
           }))
         : [],

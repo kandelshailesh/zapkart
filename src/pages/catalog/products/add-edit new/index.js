@@ -7,7 +7,7 @@ import { CATALOG_API_URL } from '_constants'
 import MainFormTabs from './tabs'
 import '../style.scss'
 
-const FormIndex = props => {
+const FormIndex = (props) => {
   const { match } = props
   const { params } = match
   const { id } = params

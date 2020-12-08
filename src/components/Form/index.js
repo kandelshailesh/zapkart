@@ -36,7 +36,8 @@ const Form = ({
   className,
 }) => {
   console.log('formItemLayout', formItemLayout, formItems)
-
+  console.log('From customer attributes')
+  console.log(initialValues)
   React.useEffect(() => {
     console.log('initialValues changed 3', initialValues)
   }, [initialValues, formItems])
