@@ -245,59 +245,62 @@ const FormD = (props) => {
         {values.cutomAttributes && values.cutomAttributes.length > 0 ? (
           values.cutomAttributes
             .filter((val) => val.value != '')
-            .map((i, index) => {
+            .map((i, index, array) => {
               console.log('ffffffffffffff', i)
-
-              return (
-                <>
-                  <Row key={i.key} gutter={10}>
-                    <Col span={8}>
-                      <Form.Item
-                        key={i.key}
-                        validateStatus={errors[`cutomAttributes[${index}].attribute`] && 'error'}
-                        help={errors[`cutomAttributes[${index}].attribute`]}
-                      >
-                        <Select
-                          // disabled={mandatorycutomAttributes.includes(i.attribute)}
-                          value={i.attribute}
-                          placeholder="Select Custom group"
-                          optionFilterProp="children"
-                          onChange={(val) => onChangeAttrGrp(val, index)}
-                          filterOption={(input, option) =>
-                            option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                          }
+              if (i.attribute == null && array.length == 2) {
+                console.log('Find')
+              } else {
+                return (
+                  <>
+                    <Row key={i.key} gutter={10}>
+                      <Col span={8}>
+                        <Form.Item
+                          key={i.key}
+                          validateStatus={errors[`cutomAttributes[${index}].attribute`] && 'error'}
+                          help={errors[`cutomAttributes[${index}].attribute`]}
                         >
-                          {/* <Select.Option selected value={data.speciality._id}>{data.speciality.name}</Select.Option> */}
-                          {selectAttrGrpOptions(index)}
-                        </Select>
-                      </Form.Item>
-                    </Col>
-                    <Col span={12} style={{ border: '1px solid grey', borderRadius: 3 }}>
-                      <Form.Item
-                        key={i.key}
-                        validateStatus={errors[`cutomAttributes[${index}].value`] && 'error'}
-                        help={errors[`cutomAttributes[${index}].value`]}
-                      >
-                        <Checkbox.Group
-                          options={attrVals[index]?.map((w) => ({
-                            label: w.value,
-                            value: w._id,
-                          }))}
-                          defaultValue={i.value?.map((w) => w._id)}
-                          onChange={(val) => onChangeAttrValues(val, index)}
-                        />
-                      </Form.Item>
-                    </Col>
+                          <Select
+                            // disabled={mandatorycutomAttributes.includes(i.attribute)}
+                            value={i.attribute}
+                            placeholder="Select Custom group"
+                            optionFilterProp="children"
+                            onChange={(val) => onChangeAttrGrp(val, index)}
+                            filterOption={(input, option) =>
+                              option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                            }
+                          >
+                            {/* <Select.Option selected value={data.speciality._id}>{data.speciality.name}</Select.Option> */}
+                            {selectAttrGrpOptions(index)}
+                          </Select>
+                        </Form.Item>
+                      </Col>
+                      <Col span={12} style={{ border: '1px solid grey', borderRadius: 3 }}>
+                        <Form.Item
+                          key={i.key}
+                          validateStatus={errors[`cutomAttributes[${index}].value`] && 'error'}
+                          help={errors[`cutomAttributes[${index}].value`]}
+                        >
+                          <Checkbox.Group
+                            options={attrVals[index]?.map((w) => ({
+                              label: w.value,
+                              value: w._id,
+                            }))}
+                            defaultValue={i.value?.map((w) => w._id)}
+                            onChange={(val) => onChangeAttrValues(val, index)}
+                          />
+                        </Form.Item>
+                      </Col>
 
-                    <Col span={2}>
-                      <AddNew
-                        onRemove={() => handleDeleteAttr(index)}
-                        attribute="Custom Attributes"
-                      />
-                    </Col>
-                  </Row>
-                </>
-              )
+                      <Col span={2}>
+                        <AddNew
+                          onRemove={() => handleDeleteAttr(index)}
+                          attribute="Custom Attributes"
+                        />
+                      </Col>
+                    </Row>
+                  </>
+                )
+              }
             })
         ) : (
           <>
